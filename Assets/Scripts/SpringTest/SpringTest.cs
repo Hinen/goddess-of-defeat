@@ -16,21 +16,23 @@ public class SpringTest : MonoBehaviour {
     [SerializeField]
     private float damping;
 
-    private float _velocityY;
+    private Vector3 _velocity;
 
     private void FixedUpdate() {
-        var displacement = transform.position.y - dot.transform.position.y;
-        var springForceY = -stiffness * displacement;
-        var dampingForce = damping * _velocityY;
-        var forceY = springForceY + gravity * mass - dampingForce;
+        var displacement = transform.position - dot.transform.position;
+        var springForce = -stiffness * displacement;
+        var gravityForce = gravity * mass * Vector3.up;
+        var dampingForce = damping * _velocity;
+        
+        var forceY = springForce + gravityForce - dampingForce;
         var accelerationY = forceY / mass;
         
-        _velocityY += accelerationY * Time.fixedDeltaTime;
-        gameObject.transform.position += new Vector3(0, _velocityY * Time.fixedDeltaTime, 0);
+        _velocity += accelerationY * Time.fixedDeltaTime;
+        gameObject.transform.position += _velocity * Time.fixedDeltaTime;
     }
 
     public void OnClickReset() {
         transform.position = Vector3.zero;
-        _velocityY = 0f;
+        _velocity = Vector3.zero;
     }
 }
