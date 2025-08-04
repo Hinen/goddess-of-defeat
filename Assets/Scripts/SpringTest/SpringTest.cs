@@ -12,16 +12,25 @@ public class SpringTest : MonoBehaviour {
 
     [SerializeField]
     private float stiffness = 7f;
-   
+    
+    [SerializeField]
+    private float damping;
+
     private float _velocityY;
 
     private void FixedUpdate() {
         var displacement = transform.position.y - dot.transform.position.y;
         var springForceY = -stiffness * displacement;
-        var forceY = springForceY + gravity * mass;
+        var dampingForce = damping * _velocityY;
+        var forceY = springForceY + gravity * mass - dampingForce;
         var accelerationY = forceY / mass;
         
         _velocityY += accelerationY * Time.fixedDeltaTime;
         gameObject.transform.position += new Vector3(0, _velocityY * Time.fixedDeltaTime, 0);
+    }
+
+    public void OnClickReset() {
+        transform.position = Vector3.zero;
+        _velocityY = 0f;
     }
 }
