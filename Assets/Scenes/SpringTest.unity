@@ -313,10 +313,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46fd2d92360f34da580c60404f38c997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dot: {fileID: 2014429552}
   gravity: -9.81
   mass: 1
-  stiffness: 0
-  damping: 0
+  stiffness: 7
 --- !u!1 &881304712
 GameObject:
   m_ObjectHideFlags: 0
@@ -467,7 +467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 881304714}
-  dot: {fileID: 0}
+  dot: {fileID: 2014429552}
   springTest: {fileID: 282309534}
 --- !u!1 &2014429552
 GameObject:
@@ -479,7 +479,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2014429555}
   - component: {fileID: 2014429554}
-  - component: {fileID: 2014429553}
   m_Layer: 0
   m_Name: Dot
   m_TagString: Untagged
@@ -487,22 +486,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2014429553
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2014429552}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46fd2d92360f34da580c60404f38c997, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gravity: 0
-  mass: 0
-  stiffness: 0
-  damping: 0
 --- !u!212 &2014429554
 SpriteRenderer:
   m_ObjectHideFlags: 0
