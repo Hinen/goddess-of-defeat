@@ -19,8 +19,9 @@ public class SpringTest : MonoBehaviour {
         var displacement = transform.position.y - dot.transform.position.y;
         var springForceY = -stiffness * displacement;
         var forceY = springForceY + gravity * mass;
+        var accelerationY = forceY / mass;
         
-        _velocityY += forceY * Time.fixedDeltaTime;
+        _velocityY += accelerationY * Time.fixedDeltaTime;
         gameObject.transform.position += new Vector3(0, _velocityY * Time.fixedDeltaTime, 0);
     }
 }
