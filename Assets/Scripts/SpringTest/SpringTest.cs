@@ -2,37 +2,50 @@ using UnityEngine;
 
 public class SpringTest : MonoBehaviour {
     [SerializeField]
-    private GameObject dot;
+    private GameObject parent;
+    public SpringTest childSpring;
     
     [SerializeField]
     private float gravity = -9.81f;
 
     [SerializeField]
-    private float mass = 1.0f;
+    private float mass = 5f;
 
     [SerializeField]
-    private float stiffness = 7f;
+    private float stiffness = 25f;
     
     [SerializeField]
-    private float damping;
+    private float damping = 2f;
 
+    private Vector3 _startPosition;
     private Vector3 _velocity;
 
+    private Vector3 Displacement => transform.position - parent.transform.position;
+    private Vector3 SpringForce => -stiffness * Displacement;
+    private Vector3 DampingForce => damping * _velocity;
+
+    private void Start() {
+        _startPosition = transform.position;
+    }
+
     private void FixedUpdate() {
-        var displacement = transform.position - dot.transform.position;
-        var springForce = -stiffness * displacement;
         var gravityForce = gravity * mass * Vector3.up;
-        var dampingForce = damping * _velocity;
+        var force = SpringForce + gravityForce - DampingForce;
         
-        var forceY = springForce + gravityForce - dampingForce;
-        var accelerationY = forceY / mass;
+        if (childSpring != null)
+            force += -childSpring.SpringForce + childSpring.DampingForce;
+        
+        var accelerationY = force / mass;
         
         _velocity += accelerationY * Time.fixedDeltaTime;
         gameObject.transform.position += _velocity * Time.fixedDeltaTime;
     }
 
     public void OnClickReset() {
-        transform.position = Vector3.zero;
+        transform.position = _startPosition;
         _velocity = Vector3.zero;
+        
+        if (childSpring != null)
+            childSpring.OnClickReset();
     }
 }
