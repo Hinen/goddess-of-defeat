@@ -316,6 +316,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 66154361475822241, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 66697431186647166, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1088717086405313243, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -356,9 +364,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1270050958099312914, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1755785384335505361, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2883971203631249632, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3491199076078744051, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
       propertyPath: m_Name
       value: Nikke
+      objectReference: {fileID: 0}
+    - target: {fileID: 7004719797268982668, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7201988080885076689, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736787357129275876, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7861262985049832207, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001511508701495192, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
