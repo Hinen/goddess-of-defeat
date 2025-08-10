@@ -360,38 +360,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Nikke
       objectReference: {fileID: 0}
-    - target: {fileID: 5764340999634691739, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
-      propertyPath: damping
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5764340999634691739, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
-      propertyPath: stiffness
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6727339882109617915, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
-      propertyPath: damping
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6727339882109617915, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
-      propertyPath: stiffness
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7045795125876881245, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 182.2808
-      objectReference: {fileID: 0}
-    - target: {fileID: 7045795125876881245, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.00002383248
-      objectReference: {fileID: 0}
-    - target: {fileID: 8435882940739510023, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
-      propertyPath: damping
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8435882940739510023, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
-      propertyPath: stiffness
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
