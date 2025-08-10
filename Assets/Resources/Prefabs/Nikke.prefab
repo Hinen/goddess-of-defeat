@@ -2192,7 +2192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   children: []
   mass: 10
-  stiffness: 150
+  stiffness: 200
   damping: 30
 --- !u!1 &5292677172117081543
 GameObject:
@@ -2462,8 +2462,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   children:
   - {fileID: 8435882940739510023}
-  mass: 30
-  stiffness: 150
+  mass: 20
+  stiffness: 200
   damping: 30
 --- !u!1 &6866813670705003993
 GameObject:
@@ -3621,7 +3621,7 @@ MonoBehaviour:
   children:
   - {fileID: 6727339882109617915}
   mass: 30
-  stiffness: 150
+  stiffness: 200
   damping: 30
 --- !u!1 &8920385150756498955
 GameObject:
