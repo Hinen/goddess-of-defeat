@@ -3,6 +3,9 @@ using UnityEngine;
 namespace Game.Bones {
     public class SpringBone : BoneBase {
         [SerializeField]
+        private float mass = 1f;
+        
+        [SerializeField]
         private float stiffness = 2f;
     
         [SerializeField]
@@ -25,8 +28,9 @@ namespace Game.Bones {
             var springForce = -stiffness * displacement;
             var dampingForce = damping * _velocity;
             var force = springForce - dampingForce;
+            var acceleration = force / mass;
             
-            _velocity += force * Time.fixedDeltaTime;
+            _velocity += acceleration * Time.fixedDeltaTime;
             position += _velocity * Time.fixedDeltaTime;
             transform.localPosition = position;
             

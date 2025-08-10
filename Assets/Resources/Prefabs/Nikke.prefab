@@ -2188,8 +2188,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   children: []
-  stiffness: 25
-  damping: 1
+  mass: 3
+  stiffness: 2
+  damping: 4
 --- !u!1 &5292677172117081543
 GameObject:
   m_ObjectHideFlags: 0
@@ -2459,8 +2460,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   children:
   - {fileID: 8435882940739510023}
-  stiffness: 25
-  damping: 1
+  mass: 5
+  stiffness: 2
+  damping: 0.8
 --- !u!1 &6866813670705003993
 GameObject:
   m_ObjectHideFlags: 0
@@ -2772,7 +2774,7 @@ Transform:
   m_GameObject: {fileID: 7289701074698255016}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.16504475, w: 0.9862861}
-  m_LocalPosition: {x: 182.28084, y: 0.000023832485, z: 0}
+  m_LocalPosition: {x: 182.2808, y: 0.00002383248, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3618,8 +3620,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   children:
   - {fileID: 6727339882109617915}
-  stiffness: 25
-  damping: 1
+  mass: 5
+  stiffness: 3
+  damping: 0.4
 --- !u!1 &8920385150756498955
 GameObject:
   m_ObjectHideFlags: 0
