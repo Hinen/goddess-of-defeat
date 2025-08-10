@@ -8,11 +8,11 @@ namespace Game.Bones {
             _oldLocalPosition = transform.localPosition;
         }
         
-        public void LateUpdate() {
+        protected override void LateUpdate() {
             var diff = transform.localPosition - _oldLocalPosition;
-            Debug.Log("Anchor Diff : " + diff);
-            
             ApplySpringForcePosition(diff);
+            
+            base.LateUpdate();
         }
     }
 }
