@@ -319,6 +319,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1145892629 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6727339882109617915, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
+  m_PrefabInstance: {fileID: 6510677812736039688}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73d6837c969d040209f9599d2e4b10a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6510677812736039688
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -329,12 +340,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 165277688755895477, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
       propertyPath: subChildren.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 165277688755895477, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
       propertyPath: 'subChildren.Array.data[0]'
       value: 
-      objectReference: {fileID: 892938649}
+      objectReference: {fileID: 1145892629}
     - target: {fileID: 165277688755895477, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
       propertyPath: 'subChildren.Array.data[1]'
       value: 
@@ -385,7 +396,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5764340999634691739, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
       propertyPath: subChildren.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5764340999634691739, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
       propertyPath: 'subChildren.Array.data[0]'
