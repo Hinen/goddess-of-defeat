@@ -10,7 +10,7 @@ namespace Game.Bones {
         
         protected override void LateUpdate() {
             var diff = transform.localPosition - _oldLocalPosition;
-            ApplySpringForcePosition(diff);
+            ApplySpringForcePositionToChildren(diff);
             
             base.LateUpdate();
         }

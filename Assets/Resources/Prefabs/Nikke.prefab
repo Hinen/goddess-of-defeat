@@ -2190,11 +2190,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boneLineRendererPrefab: {fileID: 7814568693843629938, guid: 60d6c6ebf9397453ea0b0f9a2ce71cf6, type: 3}
-  parent: {fileID: 6727339882109617915}
-  children: []
-  mass: 10
-  stiffness: 200
-  damping: 30
+  mainChildren: []
+  subChildren: []
+  mainSpringData:
+    Mass: 10
+    Stiffness: 200
+    Damping: 30
+  subSpringData:
+    Mass: 5
+    Stiffness: 100
+    Damping: 15
 --- !u!114 &8768013072613904399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2587,12 +2592,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boneLineRendererPrefab: {fileID: 7814568693843629938, guid: 60d6c6ebf9397453ea0b0f9a2ce71cf6, type: 3}
-  parent: {fileID: 5764340999634691739}
-  children:
+  mainChildren:
   - {fileID: 8435882940739510023}
-  mass: 20
-  stiffness: 200
-  damping: 30
+  subChildren: []
+  mainSpringData:
+    Mass: 20
+    Stiffness: 200
+    Damping: 30
+  subSpringData:
+    Mass: 10
+    Stiffness: 100
+    Damping: 15
 --- !u!114 &7526511228492432794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3048,9 +3058,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boneLineRendererPrefab: {fileID: 7814568693843629938, guid: 60d6c6ebf9397453ea0b0f9a2ce71cf6, type: 3}
-  parent: {fileID: 0}
-  children:
+  mainChildren:
   - {fileID: 5764340999634691739}
+  subChildren: []
 --- !u!114 &604972187950930712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3998,12 +4008,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boneLineRendererPrefab: {fileID: 7814568693843629938, guid: 60d6c6ebf9397453ea0b0f9a2ce71cf6, type: 3}
-  parent: {fileID: 165277688755895477}
-  children:
+  mainChildren:
   - {fileID: 6727339882109617915}
-  mass: 30
-  stiffness: 200
-  damping: 30
+  subChildren: []
+  mainSpringData:
+    Mass: 30
+    Stiffness: 200
+    Damping: 30
+  subSpringData:
+    Mass: 15
+    Stiffness: 100
+    Damping: 15
 --- !u!114 &5286733785196492831
 MonoBehaviour:
   m_ObjectHideFlags: 0
