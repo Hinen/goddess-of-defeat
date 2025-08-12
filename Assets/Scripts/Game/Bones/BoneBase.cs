@@ -3,13 +3,21 @@ using UnityEngine;
 
 namespace Game.Bones {
     public class BoneBase : MonoBehaviour {
+        [SerializeField]
+        private BoneLineRenderer boneLineRendererPrefab;
+        
         public BoneBase parent;
         public BoneBase[] children;
-
+        
         private CircleRenderer _boneCircleRenderer;
 
         private void Awake() {
-            _boneCircleRenderer = GetComponentInChildren<CircleRenderer>();    
+            _boneCircleRenderer = GetComponent<CircleRenderer>();
+
+            foreach (var child in children) {
+                var line = Instantiate(boneLineRendererPrefab, transform);
+                line.Init(this, child);
+            }
         }
 
         protected virtual void LateUpdate() {

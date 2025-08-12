@@ -1,13 +1,13 @@
-using Core;
 using UnityEngine;
 
 namespace Game.Bones {
     public class BoneLineRenderer : MonoBehaviour {
-        private BoneBase _bone;
         private LineRenderer _lineRenderer;
-
+        
+        private BoneBase _bone;
+        private BoneBase _nextBone;
+        
         private void Awake() {
-            _bone = GetComponent<BoneBase>();
             _lineRenderer = GetComponent<LineRenderer>();
         }
 
@@ -20,12 +20,17 @@ namespace Game.Bones {
             _lineRenderer.endColor = Color.red;
         }
 
+        public void Init(BoneBase bone, BoneBase nextBone) {
+            _bone = bone;
+            _nextBone = nextBone;
+        }
+
         private void LateUpdate() {
-            if (_bone.parent == null)
+            if (_nextBone == null)
                 return;
             
-            _lineRenderer.SetPosition(0, transform.position);
-            _lineRenderer.SetPosition(1, _bone.parent.transform.position);
+            _lineRenderer.SetPosition(0, _bone.transform.position);
+            _lineRenderer.SetPosition(1, _nextBone.transform.position);
         }
     }
 }
