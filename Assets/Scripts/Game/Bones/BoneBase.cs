@@ -16,7 +16,7 @@ namespace Game.Bones {
 
             foreach (var child in children) {
                 var line = Instantiate(boneLineRendererPrefab, transform);
-                line.Init(this, child);
+                line.Init(this, child, Color.green);
             }
         }
 

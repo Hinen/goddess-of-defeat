@@ -15,14 +15,14 @@ namespace Game.Bones {
             _lineRenderer.useWorldSpace = true;
             _lineRenderer.sortingLayerName = "Gizmo";
             _lineRenderer.positionCount = 2;
-            
-            _lineRenderer.startColor = Color.red;
-            _lineRenderer.endColor = Color.red;
         }
 
-        public void Init(BoneBase bone, BoneBase nextBone) {
+        public void Init(BoneBase bone, BoneBase nextBone, Color color) {
             _bone = bone;
             _nextBone = nextBone;
+
+            _lineRenderer.startColor = color;
+            _lineRenderer.endColor = color;
         }
 
         private void LateUpdate() {
