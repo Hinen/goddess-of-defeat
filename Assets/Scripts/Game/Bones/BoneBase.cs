@@ -12,7 +12,7 @@ namespace Game.Bones {
         private CircleRenderer _boneCircleRenderer;
 
         private void Awake() {
-            _boneCircleRenderer = GetComponent<CircleRenderer>();
+            InitCircleRenderer();
 
             foreach (var child in mainChildren)
                 CreateLine(child, Color.green);
@@ -25,6 +25,24 @@ namespace Game.Bones {
                 var line = Instantiate(boneLineRendererPrefab, transform);
                 line.Init(this, child, color);
             }
+        }
+        
+        private void InitCircleRenderer() {
+            var lineRenderer = gameObject.AddComponent<LineRenderer>();
+            lineRenderer.material = Resources.Load<Material>("Materials/Sprites-Default");
+            lineRenderer.startColor = GetCircleRendererColor();
+            lineRenderer.endColor = GetCircleRendererColor();
+            lineRenderer.widthMultiplier = 10f;
+            lineRenderer.sortingLayerName = "Gizmo";
+            
+            _boneCircleRenderer = gameObject.AddComponent<CircleRenderer>();
+            _boneCircleRenderer.lineRenderer = lineRenderer;
+            _boneCircleRenderer.segments = 32;
+            _boneCircleRenderer.radius = 25f;
+        }
+
+        protected virtual Color GetCircleRendererColor() {
+            return Color.red;
         }
 
         protected virtual void LateUpdate() {

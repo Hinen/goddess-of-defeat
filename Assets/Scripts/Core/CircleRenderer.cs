@@ -3,16 +3,11 @@ using UnityEngine;
 namespace Core {
     [RequireComponent(typeof(LineRenderer))]
     public class CircleRenderer : MonoBehaviour {
-        [SerializeField]
-        private LineRenderer lineRenderer;
-        
-        [SerializeField]
-        private int segments = 64;
-        
-        [SerializeField]
-        private float radius = 5f;
+        public LineRenderer lineRenderer;
+        public int segments = 32;
+        public float radius = 5f;
 
-        private void Awake() {
+        private void Start() {
             Reset();
         }
 
