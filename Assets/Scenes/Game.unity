@@ -607,6 +607,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Nikke_Test
       objectReference: {fileID: 0}
+    - target: {fileID: 4513589472324623208, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.76904166
+      objectReference: {fileID: 0}
+    - target: {fileID: 4513589472324623208, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4513589472324623208, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4513589472324623208, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -79.464
+      objectReference: {fileID: 0}
     - target: {fileID: 5764340999634691739, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
       propertyPath: subChildren.Array.size
       value: 1

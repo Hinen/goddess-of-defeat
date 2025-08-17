@@ -3,9 +3,6 @@ using UnityEngine;
 
 namespace Game.Bones {
     public class BoneBase : MonoBehaviour {
-        [SerializeField]
-        private BoneLineRenderer boneLineRendererPrefab;
-        
         public SpringBone[] mainChildren;
         public SpringBone[] subChildren;
         
@@ -13,18 +10,7 @@ namespace Game.Bones {
 
         private void Awake() {
             InitCircleRenderer();
-
-            foreach (var child in mainChildren)
-                CreateLine(child, Color.green);
-            
-            foreach (var child in subChildren)
-                CreateLine(child, Color.yellow);
-            
-            return;
-            void CreateLine(BoneBase child, Color color) {
-                var line = Instantiate(boneLineRendererPrefab, transform);
-                line.Init(this, child, color);
-            }
+            InitChildBoneLineRenderer();
         }
         
         private void InitCircleRenderer() {
@@ -39,6 +25,21 @@ namespace Game.Bones {
             _boneCircleRenderer.lineRenderer = lineRenderer;
             _boneCircleRenderer.segments = 32;
             _boneCircleRenderer.radius = 25f;
+        }
+
+        private void InitChildBoneLineRenderer() {
+            foreach (var child in mainChildren)
+                CreateLine(child, Color.green);
+            
+            foreach (var child in subChildren)
+                CreateLine(child, Color.yellow);
+            
+            return;
+            void CreateLine(BoneBase child, Color color) {
+                var boneLineRenderer = Resources.Load<BoneLineRenderer>("Prefabs/BoneLineRenderer");
+                var line = Instantiate(boneLineRenderer, transform);
+                line.Init(this, child, color);
+            }
         }
 
         protected virtual Color GetCircleRendererColor() {
