@@ -10,7 +10,10 @@ namespace Game.Bones {
         
         private CircleRenderer _boneCircleRenderer;
         
-        public Vector3 SkeletonPosition => transform.position.ToSkeletonSpace(Skeleton);
+        public Vector3 SkeletonPosition {
+            get => transform.position.ToSkeletonSpace(Skeleton);
+            set => transform.position = value.ToWorldSpace(Skeleton);
+        }
 
         private void Awake() {
             Skeleton = GetComponentInParent<Skeleton>();

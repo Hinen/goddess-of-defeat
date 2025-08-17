@@ -45,8 +45,7 @@ namespace Game.Bones {
 
             _velocity += acceleration * Time.deltaTime;
             var newPosition = oldPosition + _velocity * Time.deltaTime;
-            var worldPosition = newPosition.ToWorldSpace(Skeleton);
-            transform.position = worldPosition;
+            SkeletonPosition = newPosition;
             
             var diff = newPosition - oldPosition;
             ApplySpringForcePositionToChildren(diff);
