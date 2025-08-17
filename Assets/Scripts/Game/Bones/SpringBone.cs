@@ -1,4 +1,5 @@
 using System;
+using Core;
 using UnityEngine;
 
 namespace Game.Bones {
@@ -14,39 +15,40 @@ namespace Game.Bones {
         private SpringBoneData mainSpringData = new() {
             Mass = 10f,
             Stiffness = 200f,
-            Damping = 30f
+            Damping = 40f
         };
         
         [SerializeField]
         private SpringBoneData subSpringData = new() {
             Mass = 5f,
             Stiffness = 100f,
-            Damping = 15f
+            Damping = 20f
         };
         
         private Vector3 _setupPosition;
         private Vector3 _velocity;
 
         private void Start() {
-            _setupPosition = transform.localPosition;
+            _setupPosition = SkeletonPosition;
         }
         
-        public void ApplySpringForcePosition(bool isMain, Vector3 positionDiff) {
+        public void ApplySpringForcePosition(bool isMain, Vector3 skeletonPositionDiff) {
             var springData = isMain ? mainSpringData : subSpringData;
-            var oldPosition = transform.localPosition;
+            var oldPosition = SkeletonPosition;
+            var followPosition = oldPosition + skeletonPositionDiff;
             
-            var position = oldPosition + positionDiff;
-            var displacement = position - _setupPosition;
+            var displacement = followPosition - _setupPosition;
             var springForce = -springData.Stiffness * displacement;
             var dampingForce = springData.Damping * _velocity;
             var force = springForce - dampingForce;
             var acceleration = springData.Mass != 0f ? force / springData.Mass : force;
 
             _velocity += acceleration * Time.deltaTime;
-            position += _velocity * Time.deltaTime;
-            transform.localPosition = position;
+            var newPosition = oldPosition + _velocity * Time.deltaTime;
+            var worldPosition = newPosition.ToWorldSpace(Skeleton);
+            transform.position = worldPosition;
             
-            var diff = position - oldPosition;
+            var diff = newPosition - oldPosition;
             ApplySpringForcePositionToChildren(diff);
         }
     }

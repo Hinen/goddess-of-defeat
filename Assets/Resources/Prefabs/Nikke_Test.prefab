@@ -1418,6 +1418,7 @@ GameObject:
   - component: {fileID: 1088717086405313243}
   - component: {fileID: 6166639491940477274}
   - component: {fileID: 5186314363899215825}
+  - component: {fileID: 4541870776752422712}
   m_Layer: 0
   m_Name: Nikke_Test
   m_TagString: Untagged
@@ -1475,6 +1476,18 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortAtRoot: 0
+--- !u!114 &4541870776752422712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3491199076078744051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 067b7ce1817745789e73d8d6a908c2d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3568199498552237929
 GameObject:
   m_ObjectHideFlags: 0
@@ -1819,14 +1832,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4277057504928469301}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.6391987, w: 0.7690416}
+  m_LocalRotation: {x: -0, y: -0, z: -0.6469516, w: 0.7625311}
   m_LocalPosition: {x: -19.906158, y: 463.96588, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7045795125876881245}
   m_Father: {fileID: 7990996846748267801}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -80.624}
 --- !u!1 &4400084612084166035
 GameObject:
   m_ObjectHideFlags: 0
@@ -2187,13 +2200,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73d6837c969d040209f9599d2e4b10a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boneLineRendererPrefab: {fileID: 7814568693843629938, guid: 60d6c6ebf9397453ea0b0f9a2ce71cf6, type: 3}
   mainChildren: []
   subChildren: []
   mainSpringData:
-    Mass: 10
-    Stiffness: 200
-    Damping: 30
+    Mass: 0.6
+    Stiffness: 900
+    Damping: 18
   subSpringData:
     Mass: 5
     Stiffness: 100
@@ -2446,7 +2458,7 @@ Transform:
   m_GameObject: {fileID: 6858890244862765467}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.2553863, w: 0.9668391}
-  m_LocalPosition: {x: 117.83325, y: 0.00006971625, z: 0}
+  m_LocalPosition: {x: 117.57899, y: 1.6998526, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2465,14 +2477,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73d6837c969d040209f9599d2e4b10a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boneLineRendererPrefab: {fileID: 7814568693843629938, guid: 60d6c6ebf9397453ea0b0f9a2ce71cf6, type: 3}
   mainChildren:
   - {fileID: 8435882940739510023}
   subChildren: []
   mainSpringData:
-    Mass: 20
-    Stiffness: 200
-    Damping: 30
+    Mass: 0.6
+    Stiffness: 900
+    Damping: 18
   subSpringData:
     Mass: 10
     Stiffness: 100
@@ -2787,14 +2798,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7289701074698255016}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.16504475, w: 0.9862861}
+  m_LocalRotation: {x: -0, y: -0, z: -0.1650448, w: 0.98628616}
   m_LocalPosition: {x: 182.2808, y: 0.00002383248, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1872699203899445151}
   m_Father: {fileID: 4513589472324623208}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -19}
 --- !u!114 &165277688755895477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2807,7 +2818,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43173cce855694e2d9f3aa769d07315b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boneLineRendererPrefab: {fileID: 7814568693843629938, guid: 60d6c6ebf9397453ea0b0f9a2ce71cf6, type: 3}
   mainChildren:
   - {fileID: 5764340999634691739}
   subChildren: []
@@ -3633,14 +3643,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73d6837c969d040209f9599d2e4b10a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boneLineRendererPrefab: {fileID: 7814568693843629938, guid: 60d6c6ebf9397453ea0b0f9a2ce71cf6, type: 3}
   mainChildren:
   - {fileID: 6727339882109617915}
   subChildren: []
   mainSpringData:
-    Mass: 30
-    Stiffness: 200
-    Damping: 30
+    Mass: 0.6
+    Stiffness: 900
+    Damping: 18
   subSpringData:
     Mass: 15
     Stiffness: 100

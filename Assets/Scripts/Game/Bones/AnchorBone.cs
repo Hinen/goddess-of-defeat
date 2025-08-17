@@ -1,21 +1,22 @@
+using Core;
 using UnityEngine;
 
 namespace Game.Bones {
     public class AnchorBone : BoneBase {
-        private Vector3 _oldLocalPosition;
-        
+        private Vector3 _oldSkeletonPosition;
+
         protected override Color GetCircleRendererColor() {
             return Color.blue;
         }
 
         public void Update() {
-            _oldLocalPosition = transform.localPosition;
+            _oldSkeletonPosition = SkeletonPosition;
         }
         
         protected override void LateUpdate() {
-            var diff = transform.localPosition - _oldLocalPosition;
-            ApplySpringForcePositionToChildren(diff);
+            var skeletonPositionDiff = SkeletonPosition - _oldSkeletonPosition;
             
+            ApplySpringForcePositionToChildren(skeletonPositionDiff);
             base.LateUpdate();
         }
     }

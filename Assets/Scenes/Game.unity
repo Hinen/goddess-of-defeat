@@ -811,33 +811,81 @@ PrefabInstance:
       propertyPath: m_Name
       value: Nikke_Test
       objectReference: {fileID: 0}
-    - target: {fileID: 4513589472324623208, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.76904166
+    - target: {fileID: 5764340999634691739, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4513589472324623208, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
+    - target: {fileID: 5764340999634691739, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
+      propertyPath: subSpringData.Mass
+      value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 4513589472324623208, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
+    - target: {fileID: 5764340999634691739, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
+      propertyPath: mainSpringData.Mass
+      value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 4513589472324623208, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -79.464
+    - target: {fileID: 5764340999634691739, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
+      propertyPath: subSpringData.Damping
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5764340999634691739, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
+      propertyPath: mainSpringData.Damping
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 5764340999634691739, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
       propertyPath: subChildren.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5764340999634691739, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
+      propertyPath: mainSpringData.Stiffness
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5764340999634691739, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
       propertyPath: 'subChildren.Array.data[0]'
       value: 
       objectReference: {fileID: 892938649}
-    - target: {fileID: 6166639491940477274, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
+    - target: {fileID: 6727339882109617915, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6727339882109617915, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
+      propertyPath: subSpringData.Mass
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6727339882109617915, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
+      propertyPath: mainSpringData.Mass
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6727339882109617915, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
+      propertyPath: subSpringData.Damping
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6727339882109617915, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
+      propertyPath: mainSpringData.Damping
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6727339882109617915, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
+      propertyPath: mainSpringData.Stiffness
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 8435882940739510023, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8435882940739510023, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
+      propertyPath: mainSpringData.Mass
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8435882940739510023, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
+      propertyPath: subSpringData.Damping
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8435882940739510023, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
+      propertyPath: mainSpringData.Damping
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 8435882940739510023, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
+      propertyPath: mainSpringData.Stiffness
+      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

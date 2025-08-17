@@ -3,12 +3,17 @@ using UnityEngine;
 
 namespace Game.Bones {
     public class BoneBase : MonoBehaviour {
+        protected Skeleton Skeleton;
+        
         public SpringBone[] mainChildren;
         public SpringBone[] subChildren;
         
         private CircleRenderer _boneCircleRenderer;
+        
+        public Vector3 SkeletonPosition => transform.position.ToSkeletonSpace(Skeleton);
 
         private void Awake() {
+            Skeleton = GetComponentInParent<Skeleton>();
             InitCircleRenderer();
             InitChildBoneLineRenderer();
         }
@@ -50,12 +55,12 @@ namespace Game.Bones {
             _boneCircleRenderer.UpdateCircle(transform.position);
         }
 
-        protected void ApplySpringForcePositionToChildren(Vector3 positionDiff) {
+        protected void ApplySpringForcePositionToChildren(Vector3 skeletonPositionDiff) {
             foreach (var child in mainChildren)
-                child.ApplySpringForcePosition(true, positionDiff);
+                child.ApplySpringForcePosition(true, skeletonPositionDiff);
             
             foreach (var child in subChildren)
-                child.ApplySpringForcePosition(false, positionDiff);
+                child.ApplySpringForcePosition(false, skeletonPositionDiff);
         }
     }
 }
