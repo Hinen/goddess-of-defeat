@@ -42,8 +42,8 @@ namespace Game.Bones {
             var force = springForce - dampingForce;
             var acceleration = springData.Mass != 0f ? force / springData.Mass : force;
 
-            _velocity += acceleration * Time.fixedDeltaTime;
-            position += _velocity * Time.fixedDeltaTime;
+            _velocity += acceleration * Time.deltaTime;
+            position += _velocity * Time.deltaTime;
             transform.localPosition = position;
             
             var diff = position - oldPosition;
