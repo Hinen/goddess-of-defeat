@@ -1419,7 +1419,7 @@ GameObject:
   - component: {fileID: 6166639491940477274}
   - component: {fileID: 5186314363899215825}
   m_Layer: 0
-  m_Name: Nikke
+  m_Name: Nikke_Test
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
