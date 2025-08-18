@@ -3,20 +3,21 @@ using UnityEngine;
 
 namespace Game.Bones {
     public class BoneBase : MonoBehaviour {
-        protected Skeleton Skeleton;
+        private Skeleton _skeleton;
         
         public SpringBone[] mainChildren;
         public SpringBone[] subChildren;
-        
+
+        protected Vector3 OldSkeletonPosition { get; private set; }
         private CircleRenderer _boneCircleRenderer;
         
-        public Vector3 SkeletonPosition {
-            get => transform.position.ToSkeletonSpace(Skeleton);
-            set => transform.position = value.ToWorldSpace(Skeleton);
+        protected Vector3 SkeletonPosition {
+            get => transform.position.ToSkeletonSpace(_skeleton);
+            set => transform.position = value.ToWorldSpace(_skeleton);
         }
 
         private void Awake() {
-            Skeleton = GetComponentInParent<Skeleton>();
+            _skeleton = GetComponentInParent<Skeleton>();
             InitCircleRenderer();
             InitChildBoneLineRenderer();
         }
@@ -52,6 +53,10 @@ namespace Game.Bones {
 
         protected virtual Color GetCircleRendererColor() {
             return Color.red;
+        }
+        
+        public void Update() {
+            OldSkeletonPosition = SkeletonPosition;
         }
 
         protected virtual void LateUpdate() {

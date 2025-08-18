@@ -57,7 +57,7 @@ namespace Game.Bones {
 
         public void ApplySpringForcePosition(bool isMain, Vector3 skeletonPositionDiff) {
             var springData = isMain ? mainSpringData : subSpringData;
-            var oldPosition = SkeletonPosition;
+            var oldPosition = OldSkeletonPosition;
             var followPosition = oldPosition + skeletonPositionDiff;
             
             var displacement = followPosition - _setupPosition;

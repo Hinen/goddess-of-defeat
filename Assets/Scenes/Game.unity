@@ -733,6 +733,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 129403190705943888, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1088717086405313243, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 800
@@ -776,6 +780,30 @@ PrefabInstance:
     - target: {fileID: 3491199076078744051, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
       propertyPath: m_Name
       value: Nikke_Test
+      objectReference: {fileID: 0}
+    - target: {fileID: 4277057504928469301, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5764340999634691739, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
+      propertyPath: positionMixType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6620473781482890506, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6727339882109617915, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
+      propertyPath: positionMixType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7613838775537396296, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8081821569416578525, guid: 4153ab4950fe040a88c17b5da08d019f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
