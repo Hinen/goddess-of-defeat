@@ -1,15 +1,24 @@
 using System;
-using Core;
 using UnityEngine;
 
 namespace Game.Bones {
     public class SpringBone : BoneBase {
+        private enum PositionMixType {
+            Additive,
+            Mean,
+            Override,
+            None
+        }
+        
         [Serializable]
         public struct SpringBoneData {
             public float Mass;
             public float Stiffness;
             public float Damping;
         }
+
+        [SerializeField]
+        private PositionMixType positionMixType;
         
         [SerializeField]
         private SpringBoneData mainSpringData = new() {
@@ -26,12 +35,26 @@ namespace Game.Bones {
         };
         
         private Vector3 _setupPosition;
+        private Vector3 _springPosition;
+        
         private Vector3 _velocity;
+        private Vector3 _diff;
 
         private void Start() {
-            _setupPosition = SkeletonPosition;
+            _setupPosition = _springPosition = SkeletonPosition;
         }
-        
+
+        protected override void LateUpdate() {
+            if (positionMixType == PositionMixType.Additive)
+                SkeletonPosition += _diff;
+            else if (positionMixType == PositionMixType.Mean)
+                SkeletonPosition = Vector3.Lerp(SkeletonPosition, _springPosition, 0.5f);
+            else if (positionMixType == PositionMixType.Override)
+                SkeletonPosition = _springPosition;
+
+            base.LateUpdate();
+        }
+
         public void ApplySpringForcePosition(bool isMain, Vector3 skeletonPositionDiff) {
             var springData = isMain ? mainSpringData : subSpringData;
             var oldPosition = SkeletonPosition;
@@ -45,10 +68,10 @@ namespace Game.Bones {
 
             _velocity += acceleration * Time.deltaTime;
             var newPosition = oldPosition + _velocity * Time.deltaTime;
-            SkeletonPosition = newPosition;
+            _springPosition = newPosition;
             
-            var diff = newPosition - oldPosition;
-            ApplySpringForcePositionToChildren(diff);
+            _diff = newPosition - oldPosition;
+            ApplySpringForcePositionToChildren(_diff);
         }
     }
 }

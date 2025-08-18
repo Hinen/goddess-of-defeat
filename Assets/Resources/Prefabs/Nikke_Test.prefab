@@ -2202,14 +2202,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainChildren: []
   subChildren: []
+  positionMixType: 0
   mainSpringData:
-    Mass: 0.6
-    Stiffness: 900
-    Damping: 18
+    Mass: 10
+    Stiffness: 200
+    Damping: 40
   subSpringData:
     Mass: 5
     Stiffness: 100
-    Damping: 15
+    Damping: 20
 --- !u!1 &5292677172117081543
 GameObject:
   m_ObjectHideFlags: 0
@@ -2480,14 +2481,15 @@ MonoBehaviour:
   mainChildren:
   - {fileID: 8435882940739510023}
   subChildren: []
+  positionMixType: 0
   mainSpringData:
-    Mass: 0.6
-    Stiffness: 900
-    Damping: 18
-  subSpringData:
     Mass: 10
+    Stiffness: 200
+    Damping: 20
+  subSpringData:
+    Mass: 5
     Stiffness: 100
-    Damping: 15
+    Damping: 20
 --- !u!1 &6866813670705003993
 GameObject:
   m_ObjectHideFlags: 0
@@ -3646,14 +3648,15 @@ MonoBehaviour:
   mainChildren:
   - {fileID: 6727339882109617915}
   subChildren: []
+  positionMixType: 0
   mainSpringData:
-    Mass: 0.6
-    Stiffness: 900
-    Damping: 18
+    Mass: 10
+    Stiffness: 200
+    Damping: 40
   subSpringData:
-    Mass: 15
+    Mass: 5
     Stiffness: 100
-    Damping: 15
+    Damping: 20
 --- !u!1 &8920385150756498955
 GameObject:
   m_ObjectHideFlags: 0
