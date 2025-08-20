@@ -3,22 +3,12 @@ using UnityEngine;
 
 namespace Game.Bones {
     public class SpringBone : BoneBase {
-        private enum PositionMixType {
-            Additive,
-            Mean,
-            Override,
-            None
-        }
-        
         [Serializable]
         public struct SpringBoneData {
             public float Mass;
             public float Stiffness;
             public float Damping;
         }
-
-        [SerializeField]
-        private PositionMixType positionMixType;
         
         [SerializeField]
         private SpringBoneData mainSpringData = new() {
@@ -34,44 +24,61 @@ namespace Game.Bones {
             Damping = 20f
         };
         
-        private Vector3 _setupPosition;
-        private Vector3 _springPosition;
+        [SerializeField]
+        private AnimationBone[] mainParent;
+        
+        [SerializeField]
+        private AnimationBone[] subParent;
+        
+        private AnimationBone _animationBone;
+        private Vector3 _setupSkeletonPosition;
         
         private Vector3 _velocity;
-        private Vector3 _diff;
+        public Vector3 TotalDiff { get; private set; }
 
-        private void Start() {
-            _setupPosition = _springPosition = SkeletonPosition;
-        }
-
-        protected override void LateUpdate() {
-            if (positionMixType == PositionMixType.Additive)
-                SkeletonPosition += _diff;
-            else if (positionMixType == PositionMixType.Mean)
-                SkeletonPosition = Vector3.Lerp(SkeletonPosition, _springPosition, 0.5f);
-            else if (positionMixType == PositionMixType.Override)
-                SkeletonPosition = _springPosition;
-
-            base.LateUpdate();
-        }
-
-        public void ApplySpringForcePosition(bool isMain, Vector3 skeletonPositionDiff) {
-            var springData = isMain ? mainSpringData : subSpringData;
-            var oldPosition = OldSkeletonPosition;
-            var followPosition = oldPosition + skeletonPositionDiff;
+        protected override void Awake() {
+            base.Awake();
             
-            var displacement = followPosition - _setupPosition;
+            _animationBone = GetComponent<AnimationBone>();
+            _setupSkeletonPosition = SkeletonPosition;
+            InitChildBoneLineRenderer();
+        }
+
+        private void InitChildBoneLineRenderer() {
+            foreach (var parent in mainParent)
+                CreateLine(parent, Color.green);
+            
+            foreach (var parent in subParent)
+                CreateLine(parent, Color.yellow);
+            
+            return;
+            void CreateLine(BoneBase parent, Color color) {
+                var boneLineRenderer = Resources.Load<BoneLineRenderer>("Prefabs/BoneLineRenderer");
+                var line = Instantiate(boneLineRenderer, transform);
+                line.Init(this, parent, color);
+            }
+        }
+
+        private void LateUpdate() {
+            foreach (var parentBone in mainParent)
+                ApplySpringForcePosition(true, parentBone.AnimationDelta);
+        }
+
+        private void ApplySpringForcePosition(bool isMain, Vector3 animationDelta) {
+            var springData = isMain ? mainSpringData : subSpringData;
+            var oldPosition = _animationBone.SkeletonPosition; // 변위 계산은 애니메이션 본의 위치를 기준으로 삼음
+            var followPosition = oldPosition + animationDelta;
+            
+            var displacement = followPosition - _setupSkeletonPosition;
             var springForce = -springData.Stiffness * displacement;
             var dampingForce = springData.Damping * _velocity;
             var force = springForce - dampingForce;
             var acceleration = springData.Mass != 0f ? force / springData.Mass : force;
 
             _velocity += acceleration * Time.deltaTime;
-            var newPosition = oldPosition + _velocity * Time.deltaTime;
-            _springPosition = newPosition;
-            
-            _diff = newPosition - oldPosition;
-            ApplySpringForcePositionToChildren(_diff);
+            var delta = _velocity * Time.deltaTime;
+            TotalDiff += delta;
+            SkeletonPosition = oldPosition + delta;
         }
     }
 }
