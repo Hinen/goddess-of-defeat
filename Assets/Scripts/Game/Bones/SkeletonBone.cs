@@ -20,6 +20,7 @@ namespace Game.Bones {
         private SpringBone _springBone;
 
         private CircleRenderer _boneCircleRenderer;
+        private Vector3 _additivePosition;
 
         public override Vector3 SkeletonPosition {
             get => ToSkeletonSpace(transform.position);
@@ -35,6 +36,7 @@ namespace Game.Bones {
             _animationBone = GetComponent<AnimationBone>();
             _springBone = GetComponent<SpringBone>();
             InitCircleRenderer();
+            _additivePosition = SkeletonPosition;
         }
 
         private void InitCircleRenderer() {
@@ -52,8 +54,11 @@ namespace Game.Bones {
         }
 
         private void LateUpdate() {
+            if (_springBone != null)
+                _additivePosition += _animationBone.Delta + _springBone.Delta;
+
             if (positionMixType == PositionMixType.Additive)
-                SkeletonPosition = _animationBone.SkeletonPosition + _springBone.Delta;
+                SkeletonPosition = _additivePosition;
             else if (positionMixType == PositionMixType.Mean)
                 SkeletonPosition = Vector3.Lerp(_springBone.SkeletonPosition, _animationBone.SkeletonPosition, 0.5f);
             else if (positionMixType == PositionMixType.Override)
