@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.Bones {
     public class SkeletonBone : BoneBase {
-        private enum PositionMixType {
+        public enum PositionMixType {
             Additive,
             Mean,
             Override,
@@ -20,7 +20,7 @@ namespace Game.Bones {
         private SpringBone _springBone;
 
         private CircleRenderer _boneCircleRenderer;
-        
+
         public override Vector3 SkeletonPosition {
             get => ToSkeletonSpace(transform.position);
             protected set {
@@ -52,19 +52,15 @@ namespace Game.Bones {
         }
 
         private void LateUpdate() {
-            if (positionMixType == PositionMixType.Additive) {
-                SkeletonPosition = _animationBone.transform.position + _springBone.TotalDiff;
-            }
-            else if (positionMixType == PositionMixType.Mean) {
+            if (positionMixType == PositionMixType.Additive)
+                SkeletonPosition = _animationBone.SkeletonPosition + _springBone.Delta;
+            else if (positionMixType == PositionMixType.Mean)
                 SkeletonPosition = Vector3.Lerp(_springBone.SkeletonPosition, _animationBone.SkeletonPosition, 0.5f);
-            }
-            else if (positionMixType == PositionMixType.Override) {
+            else if (positionMixType == PositionMixType.Override)
                 SkeletonPosition = _springBone.SkeletonPosition;
-            }
-            else if (positionMixType == PositionMixType.None) {
+            else if (positionMixType == PositionMixType.None)
                 SkeletonPosition = _animationBone.SkeletonPosition;
-            }
-            
+
             _boneCircleRenderer.UpdateCircle(transform.position);
         }
     }

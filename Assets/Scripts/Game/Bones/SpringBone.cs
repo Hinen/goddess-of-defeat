@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.Bones {
@@ -25,23 +26,28 @@ namespace Game.Bones {
         };
         
         [SerializeField]
-        private AnimationBone[] mainParent;
+        private SkeletonBone[] mainParent;
         
         [SerializeField]
-        private AnimationBone[] subParent;
-        
-        private AnimationBone _animationBone;
+        private SkeletonBone[] subParent;
+
+        private readonly Dictionary<SkeletonBone, Vector3> _setupParentDistance = new();
         private Vector3 _setupSkeletonPosition;
         
         private Vector3 _velocity;
-        public Vector3 TotalDiff { get; private set; }
+        public Vector3 Delta { get; private set; }
 
         protected override void Awake() {
             base.Awake();
-            
-            _animationBone = GetComponent<AnimationBone>();
-            _setupSkeletonPosition = SkeletonPosition;
             InitChildBoneLineRenderer();
+        }
+        
+        public void Start() {
+            foreach (var parent in mainParent)
+                _setupParentDistance[parent] = parent.SkeletonPosition - SkeletonPosition;
+            
+            foreach (var parent in subParent)
+                _setupParentDistance[parent] = parent.SkeletonPosition - SkeletonPosition;
         }
 
         private void InitChildBoneLineRenderer() {
@@ -61,24 +67,25 @@ namespace Game.Bones {
 
         private void LateUpdate() {
             foreach (var parentBone in mainParent)
-                ApplySpringForcePosition(true, parentBone.AnimationDelta);
+                ApplySpringForcePosition(true, parentBone);
         }
 
-        private void ApplySpringForcePosition(bool isMain, Vector3 animationDelta) {
+        private void ApplySpringForcePosition(bool isMain, SkeletonBone parentBone) {
             var springData = isMain ? mainSpringData : subSpringData;
-            var oldPosition = _animationBone.SkeletonPosition; // 변위 계산은 애니메이션 본의 위치를 기준으로 삼음
-            var followPosition = oldPosition + animationDelta;
             
-            var displacement = followPosition - _setupSkeletonPosition;
+            var originDistance = _setupParentDistance[parentBone];
+            var currentDistance = parentBone.SkeletonPosition - SkeletonPosition;
+      
+            var displacement = originDistance - currentDistance;
             var springForce = -springData.Stiffness * displacement;
             var dampingForce = springData.Damping * _velocity;
             var force = springForce - dampingForce;
             var acceleration = springData.Mass != 0f ? force / springData.Mass : force;
 
             _velocity += acceleration * Time.deltaTime;
-            var delta = _velocity * Time.deltaTime;
-            TotalDiff += delta;
-            SkeletonPosition = oldPosition + delta;
+            Delta = _velocity * Time.deltaTime;
+            
+            SkeletonPosition += Delta;
         }
     }
 }
