@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Core;
 using UnityEngine;
 
 namespace Game.Bones {
@@ -25,54 +26,33 @@ namespace Game.Bones {
             Damping = 20f
         };
         
-        [SerializeField]
-        private SkeletonBone[] mainParent;
-        
-        [SerializeField]
-        private SkeletonBone[] subParent;
+        protected override Constants.BoneType BoneType => Constants.BoneType.Spring;
+        protected override Color CircleColor => Color.yellow;
 
         private readonly Dictionary<SkeletonBone, Vector3> _setupParentDistance = new();
         private Vector3 _setupSkeletonPosition;
         
         private Vector3 _velocity;
         public Vector3 Delta { get; private set; }
-
-        protected override void Awake() {
-            base.Awake();
-            InitChildBoneLineRenderer();
-        }
         
         public void Start() {
-            foreach (var parent in mainParent)
+            foreach (var parent in BoneParentConnector.mainParent)
                 _setupParentDistance[parent] = parent.SkeletonPosition - SkeletonPosition;
             
-            foreach (var parent in subParent)
+            foreach (var parent in BoneParentConnector.subParent)
                 _setupParentDistance[parent] = parent.SkeletonPosition - SkeletonPosition;
         }
 
-        private void InitChildBoneLineRenderer() {
-            foreach (var parent in mainParent)
-                CreateLine(parent, Color.green);
-            
-            foreach (var parent in subParent)
-                CreateLine(parent, Color.yellow);
-            
-            return;
-            void CreateLine(BoneBase parent, Color color) {
-                var boneLineRenderer = Resources.Load<BoneLineRenderer>("Prefabs/BoneLineRenderer");
-                var line = Instantiate(boneLineRenderer, transform);
-                line.Init(this, parent, color);
-            }
-        }
-
-        private void LateUpdate() {
+        protected override void LateUpdate() {
             Delta = Vector3.zero;
             
-            foreach (var parentBone in mainParent)
+            foreach (var parentBone in BoneParentConnector.mainParent)
                 ApplySpringForcePosition(true, parentBone);
 
-            foreach (var parentBone in subParent)
+            foreach (var parentBone in BoneParentConnector.subParent)
                 ApplySpringForcePosition(false, parentBone);
+            
+            base.LateUpdate();
         }
 
         private void ApplySpringForcePosition(bool isMain, SkeletonBone parentBone) {

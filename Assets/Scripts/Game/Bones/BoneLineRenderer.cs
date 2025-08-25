@@ -1,3 +1,4 @@
+using Core;
 using UnityEngine;
 
 namespace Game.Bones {
@@ -6,6 +7,7 @@ namespace Game.Bones {
         
         private BoneBase _bone;
         private BoneBase _nextBone;
+        private Constants.BoneType _boneType;
         
         private void Awake() {
             _lineRenderer = GetComponent<LineRenderer>();
@@ -17,20 +19,32 @@ namespace Game.Bones {
             _lineRenderer.positionCount = 2;
         }
 
-        public void Init(BoneBase bone, BoneBase nextBone, Color color) {
-            _bone = bone;
-            _nextBone = nextBone;
-
+        public void Init(BoneBase bone, BoneBase nextBone, Constants.BoneType boneType, Color color) {
+            _bone = GetSameTypeBone(bone);
+            _nextBone = GetSameTypeBone(nextBone);
+            
             _lineRenderer.startColor = color;
             _lineRenderer.endColor = color;
+
+            return;
+            BoneBase GetSameTypeBone(BoneBase target) {
+                BoneBase componentBone = boneType switch {
+                    Constants.BoneType.Skeleton => target.GetComponent<SkeletonBone>(),
+                    Constants.BoneType.Animation => target.GetComponent<AnimationBone>(),
+                    Constants.BoneType.Spring => target.GetComponent<SpringBone>(),
+                    _ => throw new System.Exception("Invalid bone type")
+                };
+
+                return componentBone == null ? target : componentBone;
+            }
         }
 
         private void LateUpdate() {
             if (_nextBone == null)
                 return;
             
-            _lineRenderer.SetPosition(0, _bone.transform.position);
-            _lineRenderer.SetPosition(1, _nextBone.transform.position);
+            _lineRenderer.SetPosition(0, _bone.WorldPosition);
+            _lineRenderer.SetPosition(1, _nextBone.WorldPosition);
         }
     }
 }

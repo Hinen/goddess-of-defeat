@@ -9,19 +9,17 @@ namespace Game.Bones {
             Override,
             None
         }
-
-        [SerializeField]
-        private Color circleColor = Color.red;
         
         [SerializeField]
         private PositionMixType positionMixType;
         
+        protected override Constants.BoneType BoneType => Constants.BoneType.Skeleton;
+        
         private AnimationBone _animationBone;
         private SpringBone _springBone;
-
-        private CircleRenderer _boneCircleRenderer;
+        
         private Vector3 _additivePosition;
-
+        
         public override Vector3 SkeletonPosition {
             get => ToSkeletonSpace(transform.position);
             protected set {
@@ -35,25 +33,10 @@ namespace Game.Bones {
             
             _animationBone = GetComponent<AnimationBone>();
             _springBone = GetComponent<SpringBone>();
-            InitCircleRenderer();
             _additivePosition = SkeletonPosition;
         }
 
-        private void InitCircleRenderer() {
-            var lineRenderer = gameObject.AddComponent<LineRenderer>();
-            lineRenderer.material = Resources.Load<Material>("Materials/Sprites-Default");
-            lineRenderer.startColor = circleColor;
-            lineRenderer.endColor = circleColor;
-            lineRenderer.widthMultiplier = 10f;
-            lineRenderer.sortingLayerName = "Gizmo";
-            
-            _boneCircleRenderer = gameObject.AddComponent<CircleRenderer>();
-            _boneCircleRenderer.lineRenderer = lineRenderer;
-            _boneCircleRenderer.segments = 32;
-            _boneCircleRenderer.radius = 25f;
-        }
-
-        private void LateUpdate() {
+        protected override void LateUpdate() {
             if (_springBone != null)
                 _additivePosition += _animationBone.Delta + _springBone.Delta;
 
@@ -66,7 +49,7 @@ namespace Game.Bones {
             else if (positionMixType == PositionMixType.None)
                 SkeletonPosition = _animationBone.SkeletonPosition;
 
-            _boneCircleRenderer.UpdateCircle(transform.position);
+            base.LateUpdate();
         }
     }
 }

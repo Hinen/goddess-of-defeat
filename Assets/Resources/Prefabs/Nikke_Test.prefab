@@ -2168,6 +2168,7 @@ GameObject:
   - component: {fileID: 7892104025076003778}
   - component: {fileID: 8167863859504637150}
   - component: {fileID: 8435882940739510023}
+  - component: {fileID: 2784725179031700878}
   m_Layer: 0
   m_Name: bone_4
   m_TagString: Untagged
@@ -2214,7 +2215,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 191a561ed2b84f568e92546fa4034a9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  circleColor: {r: 1, g: 0, b: 0, a: 1}
   positionMixType: 0
 --- !u!114 &8435882940739510023
 MonoBehaviour:
@@ -2236,6 +2236,18 @@ MonoBehaviour:
     Mass: 5
     Stiffness: 100
     Damping: 20
+--- !u!114 &2784725179031700878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5199826464798109692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df4b86fa501a43df84fbb55700ce4c79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   mainParent:
   - {fileID: 8448399072252988526}
   subParent:
@@ -2475,6 +2487,7 @@ GameObject:
   - component: {fileID: 7987873642200617914}
   - component: {fileID: 8448399072252988526}
   - component: {fileID: 6727339882109617915}
+  - component: {fileID: 7024061178786652859}
   m_Layer: 0
   m_Name: bone_3
   m_TagString: Untagged
@@ -2522,7 +2535,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 191a561ed2b84f568e92546fa4034a9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  circleColor: {r: 1, g: 0, b: 0, a: 1}
   positionMixType: 0
 --- !u!114 &6727339882109617915
 MonoBehaviour:
@@ -2544,6 +2556,18 @@ MonoBehaviour:
     Mass: 5
     Stiffness: 100
     Damping: 20
+--- !u!114 &7024061178786652859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6858890244862765467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df4b86fa501a43df84fbb55700ce4c79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   mainParent:
   - {fileID: 4262832309620277432}
   subParent:
@@ -2844,6 +2868,7 @@ GameObject:
   - component: {fileID: 7045795125876881245}
   - component: {fileID: 5557424790328791243}
   - component: {fileID: 1780945141337996726}
+  - component: {fileID: 7964659135676882372}
   m_Layer: 0
   m_Name: bone_2
   m_TagString: Untagged
@@ -2891,8 +2916,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 191a561ed2b84f568e92546fa4034a9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  circleColor: {r: 0, g: 0, b: 1, a: 1}
   positionMixType: 3
+--- !u!114 &7964659135676882372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7289701074698255016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df4b86fa501a43df84fbb55700ce4c79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainParent: []
+  subParent: []
 --- !u!1 &7329983374039837184
 GameObject:
   m_ObjectHideFlags: 0
@@ -3682,6 +3720,7 @@ GameObject:
   - component: {fileID: 6312576671769678434}
   - component: {fileID: 4262832309620277432}
   - component: {fileID: 5764340999634691739}
+  - component: {fileID: 3947481127847444119}
   m_Layer: 0
   m_Name: bone_5
   m_TagString: Untagged
@@ -3729,7 +3768,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 191a561ed2b84f568e92546fa4034a9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  circleColor: {r: 1, g: 0, b: 0, a: 1}
   positionMixType: 0
 --- !u!114 &5764340999634691739
 MonoBehaviour:
@@ -3751,6 +3789,18 @@ MonoBehaviour:
     Mass: 5
     Stiffness: 100
     Damping: 20
+--- !u!114 &3947481127847444119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8865023677152124722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df4b86fa501a43df84fbb55700ce4c79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   mainParent:
   - {fileID: 1780945141337996726}
   subParent: []
