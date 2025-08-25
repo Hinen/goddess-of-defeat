@@ -2237,8 +2237,10 @@ MonoBehaviour:
     Stiffness: 100
     Damping: 20
   mainParent:
-  - {fileID: 7987873642200617914}
-  subParent: []
+  - {fileID: 8448399072252988526}
+  subParent:
+  - {fileID: 1780945141337996726}
+  - {fileID: 4262832309620277432}
 --- !u!1 &5292677172117081543
 GameObject:
   m_ObjectHideFlags: 0
@@ -2543,8 +2545,9 @@ MonoBehaviour:
     Stiffness: 100
     Damping: 20
   mainParent:
-  - {fileID: 6312576671769678434}
-  subParent: []
+  - {fileID: 4262832309620277432}
+  subParent:
+  - {fileID: 1780945141337996726}
 --- !u!1 &6866813670705003993
 GameObject:
   m_ObjectHideFlags: 0
@@ -2839,7 +2842,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7045795125876881245}
-  - component: {fileID: 8635138119732498415}
+  - component: {fileID: 5557424790328791243}
   - component: {fileID: 1780945141337996726}
   m_Layer: 0
   m_Name: bone_2
@@ -2864,7 +2867,7 @@ Transform:
   - {fileID: 1872699203899445151}
   m_Father: {fileID: 4513589472324623208}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -19}
---- !u!114 &8635138119732498415
+--- !u!114 &5557424790328791243
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2873,7 +2876,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7289701074698255016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 022e8f12a59540978ec06fb026886f60, type: 3}
+  m_Script: {fileID: 11500000, guid: 540f60ba8b8c4c4c94013bee6447dd09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1780945141337996726
@@ -3749,7 +3752,7 @@ MonoBehaviour:
     Stiffness: 100
     Damping: 20
   mainParent:
-  - {fileID: 8635138119732498415}
+  - {fileID: 1780945141337996726}
   subParent: []
 --- !u!1 &8920385150756498955
 GameObject:

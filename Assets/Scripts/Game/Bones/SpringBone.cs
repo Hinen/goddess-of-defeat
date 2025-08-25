@@ -66,8 +66,13 @@ namespace Game.Bones {
         }
 
         private void LateUpdate() {
+            Delta = Vector3.zero;
+            
             foreach (var parentBone in mainParent)
                 ApplySpringForcePosition(true, parentBone);
+
+            foreach (var parentBone in subParent)
+                ApplySpringForcePosition(false, parentBone);
         }
 
         private void ApplySpringForcePosition(bool isMain, SkeletonBone parentBone) {
@@ -81,11 +86,11 @@ namespace Game.Bones {
             var dampingForce = springData.Damping * _velocity;
             var force = springForce - dampingForce;
             var acceleration = springData.Mass != 0f ? force / springData.Mass : force;
-
             _velocity += acceleration * Time.deltaTime;
-            Delta = _velocity * Time.deltaTime;
             
-            SkeletonPosition += Delta;
+            var delta = _velocity * Time.deltaTime;
+            Delta += delta;
+            SkeletonPosition += delta;
         }
     }
 }
