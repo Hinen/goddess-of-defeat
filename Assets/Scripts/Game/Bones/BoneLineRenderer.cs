@@ -1,4 +1,5 @@
 using Core;
+using Game.DebugTools;
 using UnityEngine;
 
 namespace Game.Bones {
@@ -22,6 +23,7 @@ namespace Game.Bones {
         public void Init(BoneBase bone, BoneBase nextBone, Constants.BoneType boneType, Color color) {
             _bone = GetSameTypeBone(bone);
             _nextBone = GetSameTypeBone(nextBone);
+            _boneType = boneType;
             
             _lineRenderer.startColor = color;
             _lineRenderer.endColor = color;
@@ -40,6 +42,7 @@ namespace Game.Bones {
         }
 
         private void LateUpdate() {
+            _lineRenderer.enabled = BoneVisualizeToggle.BoneTypeToVisibility[_boneType];
             if (_nextBone == null)
                 return;
             

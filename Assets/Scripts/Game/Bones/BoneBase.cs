@@ -1,4 +1,5 @@
 using Core;
+using Game.DebugTools;
 using UnityEngine;
 
 namespace Game.Bones {
@@ -45,6 +46,7 @@ namespace Game.Bones {
         }
 
         protected virtual void LateUpdate() {
+            _boneCircleRenderer.lineRenderer.enabled = BoneVisualizeToggle.BoneTypeToVisibility[BoneType];
             _boneCircleRenderer.UpdateCircle(ToWorldSpace(SkeletonPosition));
         }
 
