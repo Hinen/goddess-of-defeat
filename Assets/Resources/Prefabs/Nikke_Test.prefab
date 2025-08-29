@@ -2229,9 +2229,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainSpringData:
-    Mass: 10
-    Stiffness: 200
-    Damping: 40
+    Mass: 2
+    Stiffness: 100
+    Damping: 4
   subSpringData:
     Mass: 5
     Stiffness: 100
@@ -2549,9 +2549,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainSpringData:
-    Mass: 10
-    Stiffness: 200
-    Damping: 20
+    Mass: 2
+    Stiffness: 100
+    Damping: 2
   subSpringData:
     Mass: 5
     Stiffness: 100
@@ -3782,9 +3782,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainSpringData:
-    Mass: 10
-    Stiffness: 200
-    Damping: 40
+    Mass: 2
+    Stiffness: 100
+    Damping: 4
   subSpringData:
     Mass: 5
     Stiffness: 100
