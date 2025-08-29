@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Game.DebugTools {
     public class BoneVisualizeToggle : MonoBehaviour {
         public static readonly Dictionary<Constants.BoneType, bool> BoneTypeToVisibility = new() {
-            { Constants.BoneType.Skeleton, true },
+            { Constants.BoneType.Skeleton, false },
             { Constants.BoneType.Animation, false },
             { Constants.BoneType.Spring, false }
         };

@@ -35,7 +35,7 @@ namespace Game.Bones {
                 CreateLine(parent, CircleColor);
             
             foreach (var parent in BoneParentConnector.subParent)
-                CreateLine(parent, new Color(CircleColor.r, CircleColor.g, CircleColor.b, 0.3f));
+                CreateLine(parent, new Color(CircleColor.r * 0.5f, CircleColor.g * 0.5f, CircleColor.b * 0.5f, 0.8f));
             
             return;
             void CreateLine(BoneBase parent, Color color) {
