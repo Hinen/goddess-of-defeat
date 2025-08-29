@@ -1,4 +1,5 @@
 using Core;
+using Game.DebugTools;
 using UnityEngine;
 
 namespace Game.Bones {
@@ -8,6 +9,8 @@ namespace Game.Bones {
         
         private Vector3 _oldSkeletonPosition;
         public Vector3 Delta { get; private set; }
+        
+        private bool IsAnchorBone => BoneParentConnector.IsEmpty;
 
         private void Update() {
             _oldSkeletonPosition = ToSkeletonSpace(transform.position);
@@ -18,6 +21,14 @@ namespace Game.Bones {
             SkeletonPosition += Delta;
             
             base.LateUpdate();
+        }
+
+        protected override bool IsCircleRendererActive() {
+            var active = base.IsCircleRendererActive();
+            if (!active)
+                active = BoneVisualizeToggle.BoneTypeToVisibility[Constants.BoneType.Spring] && IsAnchorBone;
+            
+            return active;
         }
     }
 }

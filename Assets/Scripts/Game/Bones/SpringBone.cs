@@ -35,12 +35,19 @@ namespace Game.Bones {
         private Vector3 _velocity;
         public Vector3 Delta { get; private set; }
         
-        public void Start() {
+        private void Start() {
             foreach (var parent in BoneParentConnector.mainParent)
                 _setupParentDistance[parent] = parent.SkeletonPosition - SkeletonPosition;
             
             foreach (var parent in BoneParentConnector.subParent)
                 _setupParentDistance[parent] = parent.SkeletonPosition - SkeletonPosition;
+        }
+
+        protected override void InitParentBoneLineRenderer() {
+            base.InitParentBoneLineRenderer();
+            
+            foreach (var parent in BoneParentConnector.subParent)
+                CreateLine(parent, new Color(1f, 0.5f, 0f));
         }
 
         protected override void LateUpdate() {

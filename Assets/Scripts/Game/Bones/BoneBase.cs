@@ -13,7 +13,7 @@ namespace Game.Bones {
         protected virtual Color CircleColor => Color.red;
         public virtual Vector3 SkeletonPosition { get; protected set; }
         public Vector3 WorldPosition => ToWorldSpace(SkeletonPosition);
-
+        
         protected virtual void Awake() {
             _skeleton = GetComponentInParent<Skeleton>();
             SkeletonPosition = ToSkeletonSpace(transform.position);
@@ -30,24 +30,24 @@ namespace Game.Bones {
             _boneCircleRenderer.lineRenderer.endColor = CircleColor;
         }
         
-        private void InitParentBoneLineRenderer() {
+        protected virtual void InitParentBoneLineRenderer() {
             foreach (var parent in BoneParentConnector.mainParent)
                 CreateLine(parent, CircleColor);
-            
-            foreach (var parent in BoneParentConnector.subParent)
-                CreateLine(parent, new Color(CircleColor.r * 0.5f, CircleColor.g * 0.5f, CircleColor.b * 0.5f, 0.8f));
-            
-            return;
-            void CreateLine(BoneBase parent, Color color) {
-                var boneLineRenderer = Resources.Load<BoneLineRenderer>("Prefabs/BoneLineRenderer");
-                var line = Instantiate(boneLineRenderer, transform);
-                line.Init(this, parent, BoneType, color);
-            }
+        }
+        
+        protected void CreateLine(BoneBase parent, Color color) {
+            var boneLineRenderer = Resources.Load<BoneLineRenderer>("Prefabs/BoneLineRenderer");
+            var line = Instantiate(boneLineRenderer, transform);
+            line.Init(this, parent, BoneType, color);
         }
 
         protected virtual void LateUpdate() {
-            _boneCircleRenderer.lineRenderer.enabled = BoneVisualizeToggle.BoneTypeToVisibility[BoneType];
+            _boneCircleRenderer.lineRenderer.enabled = IsCircleRendererActive();
             _boneCircleRenderer.UpdateCircle(ToWorldSpace(SkeletonPosition));
+        }
+        
+        protected virtual bool IsCircleRendererActive() {
+            return BoneVisualizeToggle.BoneTypeToVisibility[BoneType];
         }
 
         protected Vector3 ToSkeletonSpace(Vector3 worldPosition) {
