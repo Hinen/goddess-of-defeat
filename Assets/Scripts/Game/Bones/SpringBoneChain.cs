@@ -30,6 +30,7 @@ namespace Game.Bones {
         }
 
         private void OnDestroy() {
+            _jobHandle.Complete();
             _springBoneAccesses.Dispose();
         }
 
