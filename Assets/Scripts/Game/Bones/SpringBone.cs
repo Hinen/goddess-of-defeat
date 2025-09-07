@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Core;
+using Game.Bones.Job;
 using UnityEngine;
 
 namespace Game.Bones {
@@ -31,14 +32,14 @@ namespace Game.Bones {
 
         private readonly Dictionary<SkeletonBone, Vector3> _setupParentDistance = new();
         private Vector3 _setupSkeletonPosition;
-        
-        private Vector3 _velocity;
+
+        public Vector3 Velocity { get; set; }
         public Vector3 Delta { get; private set; }
         
         private void Start() {
             foreach (var parent in BoneParentConnector.mainParent)
                 _setupParentDistance[parent] = parent.SkeletonPosition - SkeletonPosition;
-            
+
             foreach (var parent in BoneParentConnector.subParent)
                 _setupParentDistance[parent] = parent.SkeletonPosition - SkeletonPosition;
         }
@@ -70,14 +71,22 @@ namespace Game.Bones {
       
             var displacement = originDistance - currentDistance;
             var springForce = -springData.Stiffness * displacement;
-            var dampingForce = springData.Damping * _velocity;
+            var dampingForce = springData.Damping * Velocity;
             var force = springForce - dampingForce;
             var acceleration = springData.Mass != 0f ? force / springData.Mass : force;
-            _velocity += acceleration * Time.deltaTime;
+            Velocity += acceleration * Time.deltaTime;
             
-            var delta = _velocity * Time.deltaTime;
+            var delta = Velocity * Time.deltaTime;
             Delta += delta;
             SkeletonPosition += delta;
+        }
+        
+        public SpringBoneAccess GetAccess(int parentIndex) {
+            return new SpringBoneAccess {
+                Data = BoneParentConnector.IsMainParent(parentIndex) ? mainSpringData : subSpringData,
+                ParentSkeletonPosition = BoneParentConnector.GetParent(parentIndex).SkeletonPosition,
+                SkeletonPosition = SkeletonPosition
+            };
         }
     }
 }

@@ -9,6 +9,7 @@ namespace Game.Bones {
         private Skeleton _skeleton;
         private CircleRenderer _boneCircleRenderer;
         protected BoneParentConnector BoneParentConnector;
+        public int ParentCount => BoneParentConnector.mainParent.Length + BoneParentConnector.subParent.Length;
         
         protected virtual Color CircleColor => Color.red;
         public virtual Vector3 SkeletonPosition { get; protected set; }
