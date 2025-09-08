@@ -14,24 +14,23 @@ namespace Game.Bones.Job {
         
         public void Execute(int index) {
             var mainAccess = MainSpringBoneAccesses[index];
-            var acceleration = GetAcceleration(mainAccess.Data,
-                                                        mainAccess.SetupParentDistance, 
-                                                        mainAccess.ParentSkeletonPosition,
-                                                        mainAccess.SkeletonPosition,
-                                                        mainAccess.Velocity);
-            mainAccess.Velocity += acceleration * DeltaTime;
+            var totalAccel = GetAcceleration(mainAccess.Data,
+                mainAccess.SetupParentDistance, 
+                mainAccess.ParentSkeletonPosition,
+                mainAccess.SkeletonPosition,
+                mainAccess.Velocity);
             
             for (var i = mainAccess.SubSpringBoneStartIndex; i < mainAccess.SubSpringBoneCount; i++) {
                 var subAccess = SubSpringBoneAccesses[i];
-                var subAcceleration = GetAcceleration(subAccess.Data,
-                                                                subAccess.SetupParentDistance, 
-                                                                subAccess.ParentSkeletonPosition,
-                                                                mainAccess.SkeletonPosition,
-                                                                mainAccess.Velocity);
-                mainAccess.Velocity += subAcceleration * DeltaTime;
+                totalAccel += GetAcceleration(subAccess.Data, 
+                    subAccess.SetupParentDistance, 
+                    subAccess.ParentSkeletonPosition,
+                    mainAccess.SkeletonPosition,
+                    mainAccess.Velocity);
             }
             
-            mainAccess.SkeletonPosition += mainAccess.Velocity * DeltaTime;;
+            mainAccess.Velocity += totalAccel * DeltaTime;
+            mainAccess.SkeletonPosition += mainAccess.Velocity * DeltaTime;
             MainSpringBoneAccesses[index] = mainAccess;
         }
 
