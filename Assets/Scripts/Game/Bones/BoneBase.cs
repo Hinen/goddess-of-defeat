@@ -11,7 +11,7 @@ namespace Game.Bones {
         
         protected BoneParentConnector BoneParentConnector;
         protected bool IsAnchorBone => BoneParentConnector == null || BoneParentConnector.IsEmpty;
-        public int SubParentCount => BoneParentConnector != null ? BoneParentConnector.subParent.Length : 0;
+        public int SubParentCount => BoneParentConnector != null ? BoneParentConnector.subParents.Length : 0;
         
         protected virtual Color CircleColor => Color.red;
         public virtual Vector3 SkeletonPosition { get; protected set; }

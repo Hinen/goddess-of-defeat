@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.Bones {
@@ -46,9 +47,20 @@ namespace Game.Bones {
     
     public class BoneParentConnector : MonoBehaviour {
         public ParentBone mainParent;
-        public ParentBone[] subParent;
+        public ParentBone[] subParents;
+
+        private readonly Dictionary<ParentBone, Vector3> _setupParentBoneDistances = new();
+        public IReadOnlyDictionary<ParentBone, Vector3> SetupParentBoneDistances => _setupParentBoneDistances;
         
-        public bool IsEmpty => mainParent == null && subParent.Length == 0;
+        public bool IsEmpty => mainParent == null && subParents.Length == 0;
+
+        public void Init<T>(T sameBone) where T : BoneBase {
+            if (mainParent != null) 
+                _setupParentBoneDistances[mainParent] = mainParent.GetBone(sameBone).SkeletonPosition - sameBone.SkeletonPosition;
+
+            foreach (var subParent in subParents)
+                _setupParentBoneDistances[subParent] = subParent.GetBone(sameBone).SkeletonPosition - sameBone.SkeletonPosition;
+        }
         
         public void DivideFromMainParent() {
             if (mainParent != null)

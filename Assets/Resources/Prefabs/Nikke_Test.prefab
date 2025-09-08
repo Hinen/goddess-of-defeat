@@ -2250,7 +2250,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainParent:
     bone: {fileID: 7987873642200617914}
-  subParent:
+  subParents:
   - bone: {fileID: 5557424790328791243}
   - bone: {fileID: 6312576671769678434}
 --- !u!1 &5292677172117081543
@@ -2570,7 +2570,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainParent:
     bone: {fileID: 6312576671769678434}
-  subParent:
+  subParents:
   - bone: {fileID: 5557424790328791243}
 --- !u!1 &6866813670705003993
 GameObject:
@@ -3788,7 +3788,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainParent:
     bone: {fileID: 5557424790328791243}
-  subParent: []
+  subParents: []
 --- !u!1 &8920385150756498955
 GameObject:
   m_ObjectHideFlags: 0

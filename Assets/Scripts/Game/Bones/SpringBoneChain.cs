@@ -8,6 +8,7 @@ namespace Game.Bones {
     public class SpringBoneChain : MonoBehaviour {
         private readonly List<SpringBone> _springBones = new();
         private NativeArray<MainSpringBoneAccess> _mainSpringBoneAccesses;
+        private NativeList<SubSpringBoneAccess> _subSpringBoneAccesses;
         
         private JobHandle _jobHandle;
 
@@ -18,6 +19,7 @@ namespace Game.Bones {
         
         private void InitSpringBoneAccesses() {
             _mainSpringBoneAccesses = new NativeArray<MainSpringBoneAccess>(_springBones.Count, Allocator.Persistent);
+            _subSpringBoneAccesses = new NativeList<SubSpringBoneAccess>(Allocator.Persistent);
             
             RefreshSpringBoneAccesses();
         }
@@ -25,6 +27,7 @@ namespace Game.Bones {
         private void OnDestroy() {
             _jobHandle.Complete();
             _mainSpringBoneAccesses.Dispose();
+            _subSpringBoneAccesses.Dispose();
         }
 
         public void FixedUpdate() {
@@ -38,14 +41,24 @@ namespace Game.Bones {
         }
         
         private void RefreshSpringBoneAccesses() {
-            for (var i = 0; i < _mainSpringBoneAccesses.Length; i++)
-                _mainSpringBoneAccesses[i] = _springBones[i].GetMainSpringBoneAccess();
+            var subSpringBoneIndex = 0;
+            
+            for (var i = 0; i < _mainSpringBoneAccesses.Length; i++) {
+                var mainAccess = _springBones[i].GetMainSpringBoneAccess();
+                mainAccess.SubSpringBoneStartIndex = subSpringBoneIndex;
+                subSpringBoneIndex += mainAccess.SubSpringBoneCount;
+                _mainSpringBoneAccesses[i] = mainAccess;
+
+                for (var j = 0; j < _springBones[i].SubParentCount; j++)
+                    _subSpringBoneAccesses.Add(_springBones[i].GetSubSpringBoneAccess(j));
+            }
         }
         
         private void RegisterJob() {
             var job = new SpringChainJob {
                 DeltaTime = Time.deltaTime,
-                SpringBoneAccesses = _mainSpringBoneAccesses
+                MainSpringBoneAccesses = _mainSpringBoneAccesses,
+                SubSpringBoneAccesses = _subSpringBoneAccesses.AsArray()
             };
             
             _jobHandle = job.Schedule(_mainSpringBoneAccesses.Length, 8);
