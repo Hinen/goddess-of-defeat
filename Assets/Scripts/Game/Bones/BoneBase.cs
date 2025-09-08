@@ -8,8 +8,10 @@ namespace Game.Bones {
         
         private Skeleton _skeleton;
         private CircleRenderer _boneCircleRenderer;
+        
         protected BoneParentConnector BoneParentConnector;
-        public int ParentCount => BoneParentConnector.mainParent.Length + BoneParentConnector.subParent.Length;
+        protected bool IsAnchorBone => BoneParentConnector == null || BoneParentConnector.IsEmpty;
+        public int SubParentCount => BoneParentConnector != null ? BoneParentConnector.subParent.Length : 0;
         
         protected virtual Color CircleColor => Color.red;
         public virtual Vector3 SkeletonPosition { get; protected set; }
@@ -32,11 +34,11 @@ namespace Game.Bones {
         }
         
         protected virtual void InitParentBoneLineRenderer() {
-            foreach (var parent in BoneParentConnector.mainParent)
-                CreateLine(parent, CircleColor);
+            if (!IsAnchorBone)
+                CreateLine(BoneParentConnector.mainParent, CircleColor);
         }
         
-        protected void CreateLine(BoneBase parent, Color color) {
+        protected void CreateLine(ParentBone parent, Color color) {
             var boneLineRenderer = Resources.Load<BoneLineRenderer>("Prefabs/BoneLineRenderer");
             var line = Instantiate(boneLineRenderer, transform);
             line.Init(this, parent, BoneType, color);
@@ -44,7 +46,7 @@ namespace Game.Bones {
 
         protected virtual void LateUpdate() {
             _boneCircleRenderer.lineRenderer.enabled = IsCircleRendererActive();
-            _boneCircleRenderer.UpdateCircle(ToWorldSpace(SkeletonPosition));
+            _boneCircleRenderer.UpdateCircle(WorldPosition);
         }
         
         protected virtual bool IsCircleRendererActive() {

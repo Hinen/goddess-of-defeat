@@ -8,17 +8,15 @@ namespace Game.Bones {
         protected override Color CircleColor => Color.blue;
         
         private Vector3 _oldSkeletonPosition;
-        public Vector3 Delta { get; private set; }
-        
-        private bool IsAnchorBone => BoneParentConnector.IsEmpty;
+        public Vector3 SkeletonPositionDelta { get; private set; }
 
         private void Update() {
             _oldSkeletonPosition = ToSkeletonSpace(transform.position);
         }
         
         protected override void LateUpdate() {
-            Delta = ToSkeletonSpace(transform.position) - _oldSkeletonPosition;
-            SkeletonPosition += Delta;
+            SkeletonPositionDelta = ToSkeletonSpace(transform.position) - _oldSkeletonPosition;
+            SkeletonPosition += SkeletonPositionDelta;
             
             base.LateUpdate();
         }

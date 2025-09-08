@@ -20,25 +20,13 @@ namespace Game.Bones {
             _lineRenderer.positionCount = 2;
         }
 
-        public void Init(BoneBase bone, BoneBase nextBone, Constants.BoneType boneType, Color color) {
-            _bone = GetSameTypeBone(bone);
-            _nextBone = GetSameTypeBone(nextBone);
+        public void Init(BoneBase bone, ParentBone nextBone, Constants.BoneType boneType, Color color) {
+            _bone = bone;
+            _nextBone = nextBone.GetBone(bone);
             _boneType = boneType;
             
             _lineRenderer.startColor = color;
             _lineRenderer.endColor = color;
-
-            return;
-            BoneBase GetSameTypeBone(BoneBase target) {
-                BoneBase componentBone = boneType switch {
-                    Constants.BoneType.Skeleton => target.GetComponent<SkeletonBone>(),
-                    Constants.BoneType.Animation => target.GetComponent<AnimationBone>(),
-                    Constants.BoneType.Spring => target.GetComponent<SpringBone>(),
-                    _ => throw new System.Exception("Invalid bone type")
-                };
-
-                return componentBone == null ? target : componentBone;
-            }
         }
 
         private void LateUpdate() {

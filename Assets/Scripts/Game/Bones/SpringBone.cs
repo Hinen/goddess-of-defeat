@@ -30,18 +30,15 @@ namespace Game.Bones {
         protected override Constants.BoneType BoneType => Constants.BoneType.Spring;
         protected override Color CircleColor => Color.yellow;
 
-        private readonly Dictionary<SkeletonBone, Vector3> _setupParentDistance = new();
+        private Vector3 _setupMainParentDistance;
         private Vector3 _setupSkeletonPosition;
-
-        public Vector3 Velocity { get; set; }
-        public Vector3 Delta { get; private set; }
+        private Vector3 _velocity;
+        
+        private Vector3? _oldSkeletonPosition;
+        public Vector3 SkeletonPositionDelta { get; private set; }
         
         private void Start() {
-            foreach (var parent in BoneParentConnector.mainParent)
-                _setupParentDistance[parent] = parent.SkeletonPosition - SkeletonPosition;
-
-            foreach (var parent in BoneParentConnector.subParent)
-                _setupParentDistance[parent] = parent.SkeletonPosition - SkeletonPosition;
+            _setupMainParentDistance = BoneParentConnector.mainParent.GetBone(this).SkeletonPosition - SkeletonPosition;
         }
 
         protected override void InitParentBoneLineRenderer() {
@@ -52,39 +49,27 @@ namespace Game.Bones {
         }
 
         protected override void LateUpdate() {
-            Delta = Vector3.zero;
+            if (!IsAnchorBone)
+                BoneParentConnector.DivideFromMainParent();
             
-            foreach (var parentBone in BoneParentConnector.mainParent)
-                ApplySpringForcePosition(true, parentBone);
+            if (_oldSkeletonPosition != null)
+                SkeletonPositionDelta = SkeletonPosition - _oldSkeletonPosition.Value;
 
-            foreach (var parentBone in BoneParentConnector.subParent)
-                ApplySpringForcePosition(false, parentBone);
-            
+            _oldSkeletonPosition = SkeletonPosition;
             base.LateUpdate();
         }
-
-        private void ApplySpringForcePosition(bool isMain, SkeletonBone parentBone) {
-            var springData = isMain ? mainSpringData : subSpringData;
-            
-            var originDistance = _setupParentDistance[parentBone];
-            var currentDistance = parentBone.SkeletonPosition - SkeletonPosition;
-      
-            var displacement = originDistance - currentDistance;
-            var springForce = -springData.Stiffness * displacement;
-            var dampingForce = springData.Damping * Velocity;
-            var force = springForce - dampingForce;
-            var acceleration = springData.Mass != 0f ? force / springData.Mass : force;
-            Velocity += acceleration * Time.deltaTime;
-            
-            var delta = Velocity * Time.deltaTime;
-            Delta += delta;
-            SkeletonPosition += delta;
+        
+        public void ApplyJobResult(Vector3 velocity, Vector3 skeletonPosition) {
+            _velocity = velocity;
+            SkeletonPosition = skeletonPosition;
         }
         
-        public SpringBoneAccess GetAccess(int parentIndex) {
-            return new SpringBoneAccess {
-                Data = BoneParentConnector.IsMainParent(parentIndex) ? mainSpringData : subSpringData,
-                ParentSkeletonPosition = BoneParentConnector.GetParent(parentIndex).SkeletonPosition,
+        public MainSpringBoneAccess GetMainSpringBoneAccess() {
+            return new MainSpringBoneAccess {
+                Data = mainSpringData,
+                SetupParentDistance = _setupMainParentDistance,
+                ParentSkeletonPosition = BoneParentConnector.mainParent.GetBone(this).SkeletonPosition,
+                Velocity = _velocity,
                 SkeletonPosition = SkeletonPosition
             };
         }

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using Game.Bones.Job;
 using Unity.Collections;
 using Unity.Jobs;
@@ -8,7 +7,7 @@ using UnityEngine;
 namespace Game.Bones {
     public class SpringBoneChain : MonoBehaviour {
         private readonly List<SpringBone> _springBones = new();
-        private NativeArray<SpringBoneAccess> _springBoneAccesses;
+        private NativeArray<MainSpringBoneAccess> _mainSpringBoneAccesses;
         
         private JobHandle _jobHandle;
 
@@ -18,35 +17,38 @@ namespace Game.Bones {
         }
         
         private void InitSpringBoneAccesses() {
-            _springBoneAccesses = new NativeArray<SpringBoneAccess>(_springBones.Sum(x => x.ParentCount), Allocator.Persistent);
+            _mainSpringBoneAccesses = new NativeArray<MainSpringBoneAccess>(_springBones.Count, Allocator.Persistent);
+            
             RefreshSpringBoneAccesses();
-        }
-        
-        private void RefreshSpringBoneAccesses() {
-            for (var i = 0; i < _springBones.Count; i++) {
-                for (var j = 0; j < _springBones[i].ParentCount; j++)
-                    _springBoneAccesses[i + j] = _springBones[i].GetAccess(j);
-            }
         }
 
         private void OnDestroy() {
             _jobHandle.Complete();
-            _springBoneAccesses.Dispose();
+            _mainSpringBoneAccesses.Dispose();
         }
 
         public void FixedUpdate() {
             _jobHandle.Complete();
-            
+
+            for (var i = 0; i < _mainSpringBoneAccesses.Length; i++)
+                _springBones[i].ApplyJobResult(_mainSpringBoneAccesses[i].Velocity, _mainSpringBoneAccesses[i].SkeletonPosition);
+
             RefreshSpringBoneAccesses();
             RegisterJob();
         }
         
+        private void RefreshSpringBoneAccesses() {
+            for (var i = 0; i < _mainSpringBoneAccesses.Length; i++)
+                _mainSpringBoneAccesses[i] = _springBones[i].GetMainSpringBoneAccess();
+        }
+        
         private void RegisterJob() {
             var job = new SpringChainJob {
-                SpringBoneAccesses = _springBoneAccesses
+                DeltaTime = Time.deltaTime,
+                SpringBoneAccesses = _mainSpringBoneAccesses
             };
             
-            _jobHandle = job.Schedule(_springBoneAccesses.Length, 64);
+            _jobHandle = job.Schedule(_mainSpringBoneAccesses.Length, 8);
         }
     }
 }

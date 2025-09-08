@@ -21,7 +21,6 @@ namespace Game.Bones {
         private Vector3 _additivePosition;
         
         public override Vector3 SkeletonPosition {
-            get => ToSkeletonSpace(transform.position);
             protected set {
                 base.SkeletonPosition = value;
                 transform.position = ToWorldSpace(value);
@@ -35,11 +34,11 @@ namespace Game.Bones {
             _springBone = GetComponent<SpringBone>();
             _additivePosition = SkeletonPosition;
         }
-
+        
         protected override void LateUpdate() {
             if (_springBone != null)
-                _additivePosition += _animationBone.Delta + _springBone.Delta;
-
+                _additivePosition += _animationBone.SkeletonPositionDelta + _springBone.SkeletonPositionDelta;
+            
             if (positionMixType == PositionMixType.Additive)
                 SkeletonPosition = _additivePosition;
             else if (positionMixType == PositionMixType.Mean)
@@ -48,7 +47,7 @@ namespace Game.Bones {
                 SkeletonPosition = _springBone.SkeletonPosition;
             else if (positionMixType == PositionMixType.None)
                 SkeletonPosition = _animationBone.SkeletonPosition;
-
+            
             base.LateUpdate();
         }
     }
