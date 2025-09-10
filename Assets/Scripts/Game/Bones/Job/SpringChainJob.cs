@@ -10,7 +10,7 @@ namespace Game.Bones.Job {
         public NativeArray<MainSpringBoneAccess> MainSpringBoneAccesses;
         
         [ReadOnly]
-        public NativeArray<SubSpringBoneAccess> SubSpringBoneAccesses;
+        public NativeList<SubSpringBoneAccess> SubSpringBoneAccesses;
         
         public void Execute(int index) {
             var mainAccess = MainSpringBoneAccesses[index];

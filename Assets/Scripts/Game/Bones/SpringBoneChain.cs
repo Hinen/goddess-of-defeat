@@ -58,7 +58,7 @@ namespace Game.Bones {
             var job = new SpringChainJob {
                 DeltaTime = Time.deltaTime,
                 MainSpringBoneAccesses = _mainSpringBoneAccesses,
-                SubSpringBoneAccesses = _subSpringBoneAccesses.AsArray()
+                SubSpringBoneAccesses = _subSpringBoneAccesses
             };
             
             _jobHandle = job.Schedule(_mainSpringBoneAccesses.Length, 8);
