@@ -20,7 +20,9 @@ namespace Game.Bones.Job {
                 mainAccess.SkeletonPosition,
                 mainAccess.Velocity);
             
-            for (var i = mainAccess.SubSpringBoneStartIndex; i < mainAccess.SubSpringBoneCount; i++) {
+            for (var i = mainAccess.SubSpringBoneStartIndex; 
+                 i < mainAccess.SubSpringBoneStartIndex + mainAccess.SubSpringBoneCount; 
+                 i++) {
                 var subAccess = SubSpringBoneAccesses[i];
                 totalAccel += GetAcceleration(subAccess.Data, 
                     subAccess.SetupParentDistance, 
