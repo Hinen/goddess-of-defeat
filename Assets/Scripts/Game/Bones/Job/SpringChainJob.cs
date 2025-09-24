@@ -16,8 +16,8 @@ namespace Game.Bones.Job {
             var mainAccess = MainSpringBoneAccesses[index];
             var totalAccel = GetAcceleration(mainAccess.Data,
                 mainAccess.SetupParentDistance, 
-                mainAccess.ParentSkeletonPosition,
-                mainAccess.SkeletonPosition,
+                mainAccess.ParentPosition,
+                mainAccess.Position,
                 mainAccess.Velocity);
             
             for (var i = mainAccess.SubSpringBoneStartIndex; 
@@ -26,13 +26,13 @@ namespace Game.Bones.Job {
                 var subAccess = SubSpringBoneAccesses[i];
                 totalAccel += GetAcceleration(subAccess.Data, 
                     subAccess.SetupParentDistance, 
-                    subAccess.ParentSkeletonPosition,
-                    mainAccess.SkeletonPosition,
+                    subAccess.ParentPosition,
+                    mainAccess.Position,
                     mainAccess.Velocity);
             }
             
             mainAccess.Velocity += totalAccel * DeltaTime;
-            mainAccess.SkeletonPosition += mainAccess.Velocity * DeltaTime;
+            mainAccess.Position += mainAccess.Velocity * DeltaTime;
             MainSpringBoneAccesses[index] = mainAccess;
         }
 

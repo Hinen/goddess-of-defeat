@@ -7,16 +7,15 @@ namespace Game.Bones {
         protected override Constants.BoneType BoneType => Constants.BoneType.Animation;
         protected override Color CircleColor => Color.blue;
         
-        private Vector3 _oldSkeletonPosition;
-        public Vector3 SkeletonPositionDelta { get; private set; }
+        private Vector3 _oldTransformPosition;
 
         private void Update() {
-            _oldSkeletonPosition = ToSkeletonSpace(transform.position);
+            _oldTransformPosition = transform.position;
         }
         
         protected override void LateUpdate() {
-            SkeletonPositionDelta = ToSkeletonSpace(transform.position) - _oldSkeletonPosition;
-            SkeletonPosition += SkeletonPositionDelta;
+            var delta = transform.position - _oldTransformPosition;
+            Position += delta;
             
             base.LateUpdate();
         }

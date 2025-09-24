@@ -3,7 +3,8 @@ namespace Core {
         public enum BoneType {
             Skeleton,
             Animation,
-            Spring
+            Spring,
+            Anchor
         }
     }
 }

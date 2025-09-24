@@ -56,10 +56,10 @@ namespace Game.Bones {
 
         public void Init<T>(T sameBone) where T : BoneBase {
             if (mainParent != null) 
-                _setupParentBoneDistances[mainParent] = mainParent.GetBone(sameBone).SkeletonPosition - sameBone.SkeletonPosition;
+                _setupParentBoneDistances[mainParent] = mainParent.GetBone(sameBone).Position - sameBone.Position;
 
             foreach (var subParent in subParents)
-                _setupParentBoneDistances[subParent] = subParent.GetBone(sameBone).SkeletonPosition - sameBone.SkeletonPosition;
+                _setupParentBoneDistances[subParent] = subParent.GetBone(sameBone).Position - sameBone.Position;
         }
         
         public void DivideFromMainParent() {

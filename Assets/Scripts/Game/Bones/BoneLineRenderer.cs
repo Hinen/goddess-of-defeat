@@ -34,8 +34,8 @@ namespace Game.Bones {
             if (_nextBone == null)
                 return;
             
-            _lineRenderer.SetPosition(0, _bone.WorldPosition);
-            _lineRenderer.SetPosition(1, _nextBone.WorldPosition);
+            _lineRenderer.SetPosition(0, _bone.Position);
+            _lineRenderer.SetPosition(1, _nextBone.Position);
         }
     }
 }

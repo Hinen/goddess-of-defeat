@@ -6,7 +6,6 @@ namespace Game.Bones {
     public abstract class BoneBase : MonoBehaviour {
         protected abstract Constants.BoneType BoneType { get; }
         
-        private Skeleton _skeleton;
         private CircleRenderer _boneCircleRenderer;
         
         protected BoneParentConnector BoneParentConnector;
@@ -14,12 +13,10 @@ namespace Game.Bones {
         public int SubParentCount => BoneParentConnector != null ? BoneParentConnector.subParents.Length : 0;
         
         protected virtual Color CircleColor => Color.red;
-        public virtual Vector3 SkeletonPosition { get; protected set; }
-        public Vector3 WorldPosition => ToWorldSpace(SkeletonPosition);
+        public virtual Vector3 Position { get; protected set; }
         
         protected virtual void Awake() {
-            _skeleton = GetComponentInParent<Skeleton>();
-            SkeletonPosition = ToSkeletonSpace(transform.position);
+            Position = transform.position;
             BoneParentConnector = GetComponent<BoneParentConnector>();
 
             InitCircleRenderer();
@@ -46,19 +43,11 @@ namespace Game.Bones {
 
         protected virtual void LateUpdate() {
             _boneCircleRenderer.lineRenderer.enabled = IsCircleRendererActive();
-            _boneCircleRenderer.UpdateCircle(WorldPosition);
+            _boneCircleRenderer.UpdateCircle(Position);
         }
         
         protected virtual bool IsCircleRendererActive() {
             return BoneVisualizeToggle.BoneTypeToVisibility[BoneType];
-        }
-
-        protected Vector3 ToSkeletonSpace(Vector3 worldPosition) {
-            return _skeleton.transform.InverseTransformPoint(worldPosition);
-        }
-
-        protected Vector3 ToWorldSpace(Vector3 skeletonPosition) {
-            return _skeleton.transform.TransformPoint(skeletonPosition);
         }
     }
 }

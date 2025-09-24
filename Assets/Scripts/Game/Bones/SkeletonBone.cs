@@ -18,12 +18,10 @@ namespace Game.Bones {
         private AnimationBone _animationBone;
         private SpringBone _springBone;
         
-        private Vector3 _additivePosition;
-        
-        public override Vector3 SkeletonPosition {
+        public override Vector3 Position {
             protected set {
-                base.SkeletonPosition = value;
-                transform.position = ToWorldSpace(value);
+                base.Position = value;
+                transform.position = value;
             }
         }
 
@@ -32,21 +30,17 @@ namespace Game.Bones {
             
             _animationBone = GetComponent<AnimationBone>();
             _springBone = GetComponent<SpringBone>();
-            _additivePosition = SkeletonPosition;
         }
         
         protected override void LateUpdate() {
-            if (_springBone != null)
-                _additivePosition += _animationBone.SkeletonPositionDelta + _springBone.SkeletonPositionDelta;
-            
             if (positionMixType == PositionMixType.Additive)
-                SkeletonPosition = _additivePosition;
+                Position = _animationBone.Position + _springBone.SetupOffset;
             else if (positionMixType == PositionMixType.Mean)
-                SkeletonPosition = Vector3.Lerp(_springBone.SkeletonPosition, _animationBone.SkeletonPosition, 0.5f);
+                Position = Vector3.Lerp(_springBone.Position, _animationBone.Position, 0.5f);
             else if (positionMixType == PositionMixType.Override)
-                SkeletonPosition = _springBone.SkeletonPosition;
+                Position = _springBone.Position;
             else if (positionMixType == PositionMixType.None)
-                SkeletonPosition = _animationBone.SkeletonPosition;
+                Position = _animationBone.Position;
             
             base.LateUpdate();
         }

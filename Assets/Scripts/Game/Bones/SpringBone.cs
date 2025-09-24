@@ -30,15 +30,16 @@ namespace Game.Bones {
         protected override Constants.BoneType BoneType => Constants.BoneType.Spring;
         protected override Color CircleColor => Color.yellow;
         
-        private Vector3 _setupSkeletonPosition;
+        private Vector3 _setupPosition;
         private Vector3 _velocity;
-        
-        private Vector3? _oldSkeletonPosition;
-        public Vector3 SkeletonPositionDelta { get; private set; }
-        
+
+        public Vector3 SetupOffset { get; private set; }
+
         private void Start() {
             if (!IsAnchorBone)
                 BoneParentConnector.Init(this);
+            
+            _setupPosition = Position;
         }
 
         protected override void InitParentBoneLineRenderer() {
@@ -52,26 +53,23 @@ namespace Game.Bones {
             if (!IsAnchorBone)
                 BoneParentConnector.DivideFromMainParent();
             
-            if (_oldSkeletonPosition != null)
-                SkeletonPositionDelta = SkeletonPosition - _oldSkeletonPosition.Value;
-
-            _oldSkeletonPosition = SkeletonPosition;
+            SetupOffset = Position - _setupPosition;
             base.LateUpdate();
         }
         
-        public void ApplyJobResult(Vector3 velocity, Vector3 skeletonPosition) {
+        public void ApplyJobResult(Vector3 velocity, Vector3 position) {
             _velocity = velocity;
-            SkeletonPosition = skeletonPosition;
+            Position = position;
         }
         
         public MainSpringBoneAccess GetMainSpringBoneAccess() {
             return new MainSpringBoneAccess {
                 Data = mainSpringData,
                 SetupParentDistance = BoneParentConnector.SetupParentBoneDistances[BoneParentConnector.mainParent],
-                ParentSkeletonPosition = BoneParentConnector.mainParent.GetBone(this).SkeletonPosition,
+                ParentPosition = BoneParentConnector.mainParent.GetBone(this).Position,
                 Velocity = _velocity,
                 SubSpringBoneCount = SubParentCount,
-                SkeletonPosition = SkeletonPosition
+                Position = Position
             };
         }
         
@@ -79,7 +77,7 @@ namespace Game.Bones {
             return new SubSpringBoneAccess {
                 Data = subSpringData,
                 SetupParentDistance = BoneParentConnector.SetupParentBoneDistances[BoneParentConnector.subParents[subIndex]],
-                ParentSkeletonPosition = BoneParentConnector.subParents[subIndex].GetBone(this).SkeletonPosition,
+                ParentPosition = BoneParentConnector.subParents[subIndex].GetBone(this).Position,
             };
         }
     }
