@@ -30,7 +30,7 @@ namespace Game.Bones {
         protected override Constants.BoneType BoneType => Constants.BoneType.Spring;
         protected override Color CircleColor => Color.yellow;
         
-        private Vector3 _setupPosition;
+        private Vector3 _setupSkeletonPosition;
         private Vector3 _velocity;
 
         public Vector3 SetupOffset { get; private set; }
@@ -39,7 +39,7 @@ namespace Game.Bones {
             if (!IsAnchorBone)
                 BoneParentConnector.Init(this);
             
-            _setupPosition = Position;
+            _setupSkeletonPosition = ToSkeletonPosition(Position);
         }
 
         protected override void InitParentBoneLineRenderer() {
@@ -53,7 +53,7 @@ namespace Game.Bones {
             if (!IsAnchorBone)
                 BoneParentConnector.DivideFromMainParent();
             
-            SetupOffset = Position - _setupPosition;
+            SetupOffset = ToSkeletonPosition(Position) - _setupSkeletonPosition;
             base.LateUpdate();
         }
         
