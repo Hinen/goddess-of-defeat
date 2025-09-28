@@ -34,7 +34,7 @@ namespace Game.Bones {
             _jobHandle.Complete();
 
             for (var i = 0; i < _mainSpringBoneAccesses.Length; i++)
-                _springBones[i].ApplyJobResult(_mainSpringBoneAccesses[i].Velocity, _mainSpringBoneAccesses[i].Position);
+                _springBones[i].ApplyJobResult(_mainSpringBoneAccesses[i].Velocity, _mainSpringBoneAccesses[i].Result);
 
             RefreshSpringBoneAccesses();
             RegisterJob();

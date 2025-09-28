@@ -49,17 +49,17 @@ namespace Game.Bones {
         public ParentBone mainParent;
         public ParentBone[] subParents;
 
-        private readonly Dictionary<ParentBone, Vector3> _setupParentBoneDistances = new();
-        public IReadOnlyDictionary<ParentBone, Vector3> SetupParentBoneDistances => _setupParentBoneDistances;
+        private readonly Dictionary<ParentBone, Vector3> _setupParentBoneSkeletonPositionDistances = new();
+        public IReadOnlyDictionary<ParentBone, Vector3> SetupParentBoneSkeletonPositionDistances => _setupParentBoneSkeletonPositionDistances;
         
         public bool IsEmpty => mainParent == null && subParents.Length == 0;
 
         public void Init<T>(T sameBone) where T : BoneBase {
             if (mainParent != null) 
-                _setupParentBoneDistances[mainParent] = mainParent.GetBone(sameBone).Position - sameBone.Position;
+                _setupParentBoneSkeletonPositionDistances[mainParent] = mainParent.GetBone(sameBone).SkeletonPosition - sameBone.SkeletonPosition;
 
             foreach (var subParent in subParents)
-                _setupParentBoneDistances[subParent] = subParent.GetBone(sameBone).Position - sameBone.Position;
+                _setupParentBoneSkeletonPositionDistances[subParent] = subParent.GetBone(sameBone).SkeletonPosition - sameBone.SkeletonPosition;
         }
         
         public void DivideFromMainParent() {

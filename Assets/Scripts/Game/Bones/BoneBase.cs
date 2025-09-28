@@ -15,6 +15,7 @@ namespace Game.Bones {
         
         protected virtual Color CircleColor => Color.red;
         public virtual Vector3 Position { get; protected set; }
+        public Vector3 SkeletonPosition => ToSkeletonPosition(Position);
         
         protected virtual void Awake() {
             Position = transform.position;

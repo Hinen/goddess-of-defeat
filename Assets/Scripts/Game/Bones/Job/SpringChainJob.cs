@@ -15,9 +15,9 @@ namespace Game.Bones.Job {
         public void Execute(int index) {
             var mainAccess = MainSpringBoneAccesses[index];
             var totalAccel = GetAcceleration(mainAccess.Data,
-                mainAccess.SetupParentDistance, 
-                mainAccess.ParentPosition,
-                mainAccess.Position,
+                mainAccess.SetupParentSkeletonPositionDistance, 
+                mainAccess.ParentSkeletonPosition,
+                mainAccess.SkeletonPosition,
                 mainAccess.Velocity);
             
             for (var i = mainAccess.SubSpringBoneStartIndex; 
@@ -25,24 +25,24 @@ namespace Game.Bones.Job {
                  i++) {
                 var subAccess = SubSpringBoneAccesses[i];
                 totalAccel += GetAcceleration(subAccess.Data, 
-                    subAccess.SetupParentDistance, 
-                    subAccess.ParentPosition,
-                    mainAccess.Position,
+                    subAccess.SetupParentSkeletonPositionDistance, 
+                    subAccess.ParentSkeletonPosition,
+                    mainAccess.SkeletonPosition,
                     mainAccess.Velocity);
             }
             
             mainAccess.Velocity += totalAccel * DeltaTime;
-            mainAccess.Position += mainAccess.Velocity * DeltaTime;
+            mainAccess.Result = mainAccess.Velocity * DeltaTime;
             MainSpringBoneAccesses[index] = mainAccess;
         }
 
         private static Vector3 GetAcceleration(SpringBone.SpringBoneData data, 
-                                                Vector3 setupParentDistance, 
+                                                Vector3 setupParentSkeletonPositionDistance, 
                                                 Vector3 parentSkeletonPosition,
                                                 Vector3 skeletonPosition,
                                                 Vector3 velocity) {
             var currentDistance = parentSkeletonPosition - skeletonPosition;
-            var displacement = setupParentDistance - currentDistance;
+            var displacement = setupParentSkeletonPositionDistance - currentDistance;
             var springForce = -data.Stiffness * displacement;
             var dampingForce = data.Damping * velocity;
             var force = springForce - dampingForce;

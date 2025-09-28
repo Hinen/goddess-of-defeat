@@ -1418,7 +1418,7 @@ GameObject:
   - component: {fileID: 1088717086405313243}
   - component: {fileID: 6166639491940477274}
   - component: {fileID: 5186314363899215825}
-  - component: {fileID: 4541870776752422712}
+  - component: {fileID: 1127805602034355321}
   m_Layer: 0
   m_Name: Nikke_Test
   m_TagString: Untagged
@@ -1476,7 +1476,7 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortAtRoot: 0
---- !u!114 &4541870776752422712
+--- !u!114 &1127805602034355321
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1485,7 +1485,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3491199076078744051}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 067b7ce1817745789e73d8d6a908c2d8, type: 3}
+  m_Script: {fileID: 11500000, guid: ddead86f07444f048c3fc43d04c53c05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3568199498552237929
