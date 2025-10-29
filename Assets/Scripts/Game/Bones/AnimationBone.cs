@@ -1,31 +1,15 @@
-using Core;
-using Game.DebugTools;
 using UnityEngine;
 
 namespace Game.Bones {
-    public class AnimationBone : BoneBase {
-        protected override Constants.BoneType BoneType => Constants.BoneType.Animation;
-        protected override Color CircleColor => Color.blue;
+    public class AnimationBone : MonoBehaviour, ISpringBoneParent {
+        private Skeleton _skeleton;
         
-        private Vector3 _oldTransformPosition;
+        public Vector3 Position => transform.position;
+        public Vector3 SkeletonPosition => ToSkeletonPosition(Position);
+        private Vector3 ToSkeletonPosition(Vector3 worldPosition) => _skeleton.transform.InverseTransformPoint(worldPosition);
 
-        private void Update() {
-            _oldTransformPosition = transform.position;
-        }
-        
-        protected override void LateUpdate() {
-            var delta = transform.position - _oldTransformPosition;
-            Position += delta;
-            
-            base.LateUpdate();
-        }
-
-        protected override bool IsCircleRendererActive() {
-            var active = base.IsCircleRendererActive();
-            if (!active)
-                active = BoneVisualizeToggle.BoneTypeToVisibility[Constants.BoneType.Spring] && IsAnchorBone;
-            
-            return active;
+        private void Awake() {
+            _skeleton = GetComponentInParent<Skeleton>();
         }
     }
 }

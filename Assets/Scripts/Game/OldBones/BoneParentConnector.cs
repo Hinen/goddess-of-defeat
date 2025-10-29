@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
+using Game.Bones;
 using UnityEngine;
 
-namespace Game.Bones {
+namespace Game.OldBones {
     [Serializable]
     public class ParentBone {
         [SerializeField]
@@ -19,6 +20,7 @@ namespace Game.Bones {
             if (!_isInitialized)
                 Init();
             
+            /*
             if (_skeletonBone != null && sameBone is SkeletonBone)
                 return _skeletonBone;
             if (_animationBone != null && sameBone is AnimationBone)
@@ -32,7 +34,7 @@ namespace Game.Bones {
                 return _animationBone;
             if (_springBone != null)
                 return _springBone;
-
+*/
             return null;
         }
 
@@ -63,13 +65,13 @@ namespace Game.Bones {
         }
         
         public void DivideFromMainParent() {
-            if (mainParent != null)
-                transform.SetParent(null, true);
+            //if (mainParent != null)
+            //    transform.SetParent(null, true);
         }
-        
+ 
         private void LateUpdate() {
-            if (mainParent != null)
-                transform.SetParent(mainParent.GameObject.transform, true);
+            //if (mainParent != null)
+            //    transform.SetParent(mainParent.GameObject.transform, true);
         }
     }
 }

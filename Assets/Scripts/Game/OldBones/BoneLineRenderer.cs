@@ -2,7 +2,7 @@ using Core;
 using Game.DebugTools;
 using UnityEngine;
 
-namespace Game.Bones {
+namespace Game.OldBones {
     public class BoneLineRenderer : MonoBehaviour {
         private LineRenderer _lineRenderer;
         

@@ -1,8 +1,7 @@
-using Core;
 using UnityEngine;
 
 namespace Game.Bones {
-    public class SkeletonBone : BoneBase {
+    public class SkeletonBone : MonoBehaviour {
         public enum PositionMixType {
             Additive,
             Mean,
@@ -12,37 +11,29 @@ namespace Game.Bones {
         
         [SerializeField]
         private PositionMixType positionMixType;
-        
-        protected override Constants.BoneType BoneType => Constants.BoneType.Skeleton;
-        
-        private AnimationBone _animationBone;
+
+        private BoneChain _boneChain;
         private SpringBone _springBone;
+        private AnimationBone AnimationBone => _boneChain.Foo[gameObject];
         
-        public override Vector3 Position {
-            protected set {
-                base.Position = value;
-                transform.position = value;
-            }
+        public Vector3 Position {
+            set => transform.position = value;
         }
 
-        protected override void Awake() {
-            base.Awake();
-            
-            _animationBone = GetComponent<AnimationBone>();
+        private void Awake() {
+            _boneChain = GetComponentInParent<BoneChain>();
             _springBone = GetComponent<SpringBone>();
         }
-        
-        protected override void LateUpdate() {
+
+        private void LateUpdate() {
             if (positionMixType == PositionMixType.Additive)
-                Position = _animationBone.Position + _springBone.SetupOffset;
+                Position = AnimationBone.Position + _springBone.SetupOffset;
             else if (positionMixType == PositionMixType.Mean)
-                Position = Vector3.Lerp(_springBone.Position, _animationBone.Position, 0.5f);
+                Position = Vector3.Lerp(_springBone.Position, AnimationBone.Position, 0.5f);
             else if (positionMixType == PositionMixType.Override)
                 Position = _springBone.Position;
             else if (positionMixType == PositionMixType.None)
-                Position = _animationBone.Position;
-            
-            base.LateUpdate();
+                Position = AnimationBone.Position;
         }
     }
 }

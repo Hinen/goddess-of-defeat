@@ -1,16 +1,17 @@
 using Core;
+using Game.Bones;
 using Game.DebugTools;
 using UnityEngine;
 
-namespace Game.Bones {
+namespace Game.OldBones {
     public abstract class BoneBase : MonoBehaviour {
         protected abstract Constants.BoneType BoneType { get; }
         
         private Skeleton _skeleton;
         private CircleRenderer _boneCircleRenderer;
         
-        protected BoneParentConnector BoneParentConnector;
-        protected bool IsAnchorBone => BoneParentConnector == null || BoneParentConnector.IsEmpty;
+        public BoneParentConnector BoneParentConnector;
+        public bool IsAnchorBone => BoneParentConnector == null || BoneParentConnector.IsEmpty;
         public int SubParentCount => BoneParentConnector != null ? BoneParentConnector.subParents.Length : 0;
         
         protected virtual Color CircleColor => Color.red;
