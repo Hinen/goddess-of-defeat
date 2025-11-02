@@ -7,7 +7,7 @@ namespace Game.OldBones {
     public abstract class BoneBase : MonoBehaviour {
         protected abstract Constants.BoneType BoneType { get; }
         
-        private Skeleton _skeleton;
+        private Skeleton.Skeleton _skeleton;
         private CircleRenderer _boneCircleRenderer;
         
         public BoneParentConnector BoneParentConnector;
@@ -21,7 +21,7 @@ namespace Game.OldBones {
         protected virtual void Awake() {
             Position = transform.position;
             
-            _skeleton = GetComponentInParent<Skeleton>();
+            _skeleton = GetComponentInParent<Skeleton.Skeleton>();
             BoneParentConnector = GetComponent<BoneParentConnector>();
 
             InitCircleRenderer();

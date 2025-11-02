@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game.Bones {
+namespace Game.Skeleton {
     public class Skeleton : MonoBehaviour {
         
     }

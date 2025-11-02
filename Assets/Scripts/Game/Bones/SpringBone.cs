@@ -41,8 +41,8 @@ namespace Game.Bones {
         private ParentInfo[] subSpringParentInfos;
         public int SubParentCount => subParent.Length;
 
-        private Skeleton _skeleton;
-        private BoneChain _boneChain;
+        private Skeleton.Skeleton _skeleton;
+        private AnimationBoneManager _animationBoneManager;
 
         public Vector3 Position { get; private set; }
         private Vector3 _setupSkeletonPosition;
@@ -54,21 +54,21 @@ namespace Game.Bones {
         private Vector3 ToSkeletonPosition(Vector3 worldPosition) => _skeleton.transform.InverseTransformPoint(worldPosition);
 
         private void Awake() {
-            _skeleton = GetComponentInParent<Skeleton>();
-            _boneChain = GetComponentInParent<BoneChain>();
+            _skeleton = GetComponentInParent<Skeleton.Skeleton>();
+            _animationBoneManager = _skeleton.GetComponent<AnimationBoneManager>();
             
             Position = transform.position;
             _setupSkeletonPosition = SkeletonPosition;
         }
 
         private void Start() {
-            mainSpringParentInfo = Foo(mainParent);
+            mainSpringParentInfo = CreateParentInfo(mainParent);
             subSpringParentInfos = new ParentInfo[subParent.Length];
             for (var i = 0; i < subParent.Length; i++)
-                subSpringParentInfos[i] = Foo(subParent[i]);
+                subSpringParentInfos[i] = CreateParentInfo(subParent[i]);
         }
 
-        private ParentInfo Foo(GameObject parent) {
+        private ParentInfo CreateParentInfo(GameObject parent) {
             var parentSpringBone = parent.GetComponent<SpringBone>();
             if (parentSpringBone != null)
                 return new ParentInfo {
@@ -76,7 +76,7 @@ namespace Game.Bones {
                     SetupSkeletonPositionDistance = parentSpringBone.SkeletonPosition - SkeletonPosition
                 };
 
-            var animationBone = _boneChain.Foo.GetValueOrDefault(gameObject);
+            var animationBone = _animationBoneManager.Mapping.GetValueOrDefault(gameObject);
             if (animationBone == null)
                 return default;
 

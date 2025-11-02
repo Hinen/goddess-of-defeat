@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.Bones {
@@ -12,16 +13,16 @@ namespace Game.Bones {
         [SerializeField]
         private PositionMixType positionMixType;
 
-        private BoneChain _boneChain;
+        private AnimationBoneManager _animationBoneManager;
         private SpringBone _springBone;
-        private AnimationBone AnimationBone => _boneChain.Foo[gameObject];
+        private AnimationBone AnimationBone => _animationBoneManager.Mapping.GetValueOrDefault(gameObject);
         
         public Vector3 Position {
             set => transform.position = value;
         }
 
         private void Awake() {
-            _boneChain = GetComponentInParent<BoneChain>();
+            _animationBoneManager = GetComponentInParent<AnimationBoneManager>();
             _springBone = GetComponent<SpringBone>();
         }
 
