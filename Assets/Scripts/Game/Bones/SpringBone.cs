@@ -44,7 +44,7 @@ namespace Game.Bones {
         private Skeleton.Skeleton _skeleton;
         private AnimationBoneManager _animationBoneManager;
 
-        public Vector3 Position { get; private set; }
+        public Vector3 Position;
         private Vector3 _setupSkeletonPosition;
         
         private Vector3 _velocity;
@@ -76,13 +76,13 @@ namespace Game.Bones {
                     SetupSkeletonPositionDistance = parentSpringBone.SkeletonPosition - SkeletonPosition
                 };
 
-            var animationBone = _animationBoneManager.Mapping.GetValueOrDefault(gameObject);
-            if (animationBone == null)
+            var parentAnimationBone = _animationBoneManager.Mapping.GetValueOrDefault(gameObject).transform.parent.GetComponent<AnimationBone>();
+            if (parentAnimationBone == null)
                 return default;
 
             return new ParentInfo {
-                Parent = animationBone,
-                SetupSkeletonPositionDistance = animationBone.SkeletonPosition - SkeletonPosition
+                Parent = parentAnimationBone,
+                SetupSkeletonPositionDistance = parentAnimationBone.SkeletonPosition - SkeletonPosition
             };
         }
         
