@@ -1706,6 +1706,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3734240189671777351, guid: abedfac440e0e491db830c592b4f1711, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9702903
+      objectReference: {fileID: 0}
+    - target: {fileID: 3734240189671777351, guid: abedfac440e0e491db830c592b4f1711, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3734240189671777351, guid: abedfac440e0e491db830c592b4f1711, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3734240189671777351, guid: abedfac440e0e491db830c592b4f1711, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.24194402
+      objectReference: {fileID: 0}
+    - target: {fileID: 3734240189671777351, guid: abedfac440e0e491db830c592b4f1711, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -28.003
+      objectReference: {fileID: 0}
     - target: {fileID: 4829006558622431081, guid: abedfac440e0e491db830c592b4f1711, type: 3}
       propertyPath: m_Name
       value: Nikke
@@ -1749,6 +1769,14 @@ PrefabInstance:
     - target: {fileID: 6038212425632968458, guid: abedfac440e0e491db830c592b4f1711, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8685721735267939650, guid: abedfac440e0e491db830c592b4f1711, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 64.3042
+      objectReference: {fileID: 0}
+    - target: {fileID: 8685721735267939650, guid: abedfac440e0e491db830c592b4f1711, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.00008583069
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

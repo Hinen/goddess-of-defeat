@@ -22,11 +22,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 18a1d2fda63a149f1a46dbe7d4269f3e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1192
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 18a1d2fda63a149f1a46dbe7d4269f3e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 335
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 18a1d2fda63a149f1a46dbe7d4269f3e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -236,6 +236,26 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -64.720955
       objectReference: {fileID: 0}
+    - target: {fileID: 4116409300450724842, guid: 18a1d2fda63a149f1a46dbe7d4269f3e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9402474
+      objectReference: {fileID: 0}
+    - target: {fileID: 4116409300450724842, guid: 18a1d2fda63a149f1a46dbe7d4269f3e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4116409300450724842, guid: 18a1d2fda63a149f1a46dbe7d4269f3e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4116409300450724842, guid: 18a1d2fda63a149f1a46dbe7d4269f3e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.34049216
+      objectReference: {fileID: 0}
+    - target: {fileID: 4116409300450724842, guid: 18a1d2fda63a149f1a46dbe7d4269f3e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -39.814
+      objectReference: {fileID: 0}
     - target: {fileID: 4257508509235537429, guid: 18a1d2fda63a149f1a46dbe7d4269f3e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -395,6 +415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionMixType: 2
+  isApplyRotationToParentBone: 1
 --- !u!114 &5625176467739109687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -415,7 +436,6 @@ MonoBehaviour:
     Mass: 5
     Stiffness: 100
     Damping: 20
-  mainParent: {fileID: 0}
   subParent: []
   Position: {x: 0, y: 0, z: 0}
 --- !u!1 &780747923991698310 stripped
@@ -436,6 +456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionMixType: 3
+  isApplyRotationToParentBone: 0
 --- !u!1 &2192651837125562706 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6525154026829121414, guid: 18a1d2fda63a149f1a46dbe7d4269f3e, type: 3}
@@ -454,6 +475,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionMixType: 3
+  isApplyRotationToParentBone: 0
 --- !u!1 &2257693375277899776 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6608799456409630420, guid: 18a1d2fda63a149f1a46dbe7d4269f3e, type: 3}
@@ -472,6 +494,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionMixType: 3
+  isApplyRotationToParentBone: 0
 --- !u!1 &2404887572622145863 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -1892570948192505965, guid: 18a1d2fda63a149f1a46dbe7d4269f3e, type: 3}
@@ -489,7 +512,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c27b425e434e44f98016b12e36430e3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positionMixType: 0
+  positionMixType: 2
+  isApplyRotationToParentBone: 1
 --- !u!114 &2916084437149373502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -510,7 +534,6 @@ MonoBehaviour:
     Mass: 5
     Stiffness: 100
     Damping: 20
-  mainParent: {fileID: 0}
   subParent: []
   Position: {x: 0, y: 0, z: 0}
 --- !u!1 &2452860671732682679 stripped
@@ -531,6 +554,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionMixType: 2
+  isApplyRotationToParentBone: 1
 --- !u!114 &4879099053189322120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -551,7 +575,6 @@ MonoBehaviour:
     Mass: 5
     Stiffness: 100
     Damping: 20
-  mainParent: {fileID: 0}
   subParent: []
   Position: {x: 0, y: 0, z: 0}
 --- !u!1 &2519741700104638295 stripped
@@ -572,6 +595,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionMixType: 3
+  isApplyRotationToParentBone: 0
 --- !u!1 &2526197889723795810 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7488650165527650230, guid: 18a1d2fda63a149f1a46dbe7d4269f3e, type: 3}
@@ -590,6 +614,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionMixType: 2
+  isApplyRotationToParentBone: 1
 --- !u!114 &4455257630657198473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -610,7 +635,6 @@ MonoBehaviour:
     Mass: 5
     Stiffness: 100
     Damping: 20
-  mainParent: {fileID: 0}
   subParent: []
   Position: {x: 0, y: 0, z: 0}
 --- !u!1 &2772043189587839069 stripped
@@ -631,6 +655,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionMixType: 3
+  isApplyRotationToParentBone: 0
 --- !u!1 &3328187248532091222 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7697712335768217474, guid: 18a1d2fda63a149f1a46dbe7d4269f3e, type: 3}
@@ -649,6 +674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionMixType: 2
+  isApplyRotationToParentBone: 1
 --- !u!114 &8516129914273879988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -669,7 +695,6 @@ MonoBehaviour:
     Mass: 5
     Stiffness: 100
     Damping: 20
-  mainParent: {fileID: 0}
   subParent: []
   Position: {x: 0, y: 0, z: 0}
 --- !u!1 &3339921992335724964 stripped
@@ -690,6 +715,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionMixType: 2
+  isApplyRotationToParentBone: 1
 --- !u!114 &3359106276535612437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -710,7 +736,6 @@ MonoBehaviour:
     Mass: 5
     Stiffness: 100
     Damping: 20
-  mainParent: {fileID: 0}
   subParent: []
   Position: {x: 0, y: 0, z: 0}
 --- !u!1 &3745459736577595974 stripped
@@ -731,6 +756,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionMixType: 3
+  isApplyRotationToParentBone: 0
 --- !u!1 &3828199875580828205 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8197575790080462073, guid: 18a1d2fda63a149f1a46dbe7d4269f3e, type: 3}
@@ -766,6 +792,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionMixType: 2
+  isApplyRotationToParentBone: 1
 --- !u!114 &2715136359973486577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -786,7 +813,6 @@ MonoBehaviour:
     Mass: 5
     Stiffness: 100
     Damping: 20
-  mainParent: {fileID: 0}
   subParent: []
   Position: {x: 0, y: 0, z: 0}
 --- !u!1 &4484702244449628530 stripped
@@ -807,6 +833,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionMixType: 2
+  isApplyRotationToParentBone: 1
 --- !u!114 &160949745930060478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -827,7 +854,6 @@ MonoBehaviour:
     Mass: 5
     Stiffness: 100
     Damping: 20
-  mainParent: {fileID: 0}
   subParent: []
   Position: {x: 0, y: 0, z: 0}
 --- !u!1 &4537535055993071436 stripped
@@ -848,6 +874,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionMixType: 3
+  isApplyRotationToParentBone: 0
 --- !u!1 &4802663742350224075 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8771427656785134561, guid: 18a1d2fda63a149f1a46dbe7d4269f3e, type: 3}
@@ -866,6 +893,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionMixType: 2
+  isApplyRotationToParentBone: 1
 --- !u!114 &956782334172316498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -886,7 +914,6 @@ MonoBehaviour:
     Mass: 5
     Stiffness: 100
     Damping: 20
-  mainParent: {fileID: 0}
   subParent: []
   Position: {x: 0, y: 0, z: 0}
 --- !u!1 &4829006558622431081 stripped
@@ -936,6 +963,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionMixType: 3
+  isApplyRotationToParentBone: 0
 --- !u!1 &6659116394037754457 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1768282062311107725, guid: 18a1d2fda63a149f1a46dbe7d4269f3e, type: 3}
@@ -954,6 +982,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionMixType: 3
+  isApplyRotationToParentBone: 0
 --- !u!1 &6852779315275932817 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7207401781015563707, guid: 18a1d2fda63a149f1a46dbe7d4269f3e, type: 3}
@@ -972,6 +1001,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionMixType: 2
+  isApplyRotationToParentBone: 1
 --- !u!114 &1972333623359954321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -992,7 +1022,6 @@ MonoBehaviour:
     Mass: 5
     Stiffness: 100
     Damping: 20
-  mainParent: {fileID: 0}
   subParent: []
   Position: {x: 0, y: 0, z: 0}
 --- !u!1 &7592667707529081203 stripped
@@ -1013,6 +1042,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionMixType: 3
+  isApplyRotationToParentBone: 0
 --- !u!1 &8103688754084440166 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -5434215539761086798, guid: 18a1d2fda63a149f1a46dbe7d4269f3e, type: 3}
@@ -1031,6 +1061,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionMixType: 3
+  isApplyRotationToParentBone: 0
 --- !u!1 &8836984847637469892 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -4737616553295033328, guid: 18a1d2fda63a149f1a46dbe7d4269f3e, type: 3}
@@ -1049,6 +1080,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionMixType: 2
+  isApplyRotationToParentBone: 1
 --- !u!114 &883730686655770795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1069,6 +1101,5 @@ MonoBehaviour:
     Mass: 5
     Stiffness: 100
     Damping: 20
-  mainParent: {fileID: 0}
   subParent: []
   Position: {x: 0, y: 0, z: 0}
