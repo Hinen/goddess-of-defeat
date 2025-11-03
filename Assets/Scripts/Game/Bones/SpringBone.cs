@@ -25,9 +25,6 @@ namespace Game.Bones {
             Stiffness = 100f,
             Damping = 20f
         };
-
-        [SerializeField]
-        private GameObject mainParent;
         
         [SerializeField]
         private GameObject[] subParent;
@@ -62,7 +59,7 @@ namespace Game.Bones {
         }
 
         private void Start() {
-            mainSpringParentInfo = CreateParentInfo(mainParent);
+            mainSpringParentInfo = CreateParentInfo(transform.parent.gameObject);
             subSpringParentInfos = new ParentInfo[subParent.Length];
             for (var i = 0; i < subParent.Length; i++)
                 subSpringParentInfos[i] = CreateParentInfo(subParent[i]);
